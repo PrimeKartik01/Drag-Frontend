@@ -3,7 +3,6 @@ import type { Project } from "@/types/project";
 import {
   MapPin,
   BedDouble,
-  ArrowRight,
   LandPlot,
   IndianRupee,
 } from "@/assets/icons/icons";
@@ -70,7 +69,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           className="mt-2 px-4 py-2 font-light uppercase flex items-center justify-center gap-1 rounded-lg  w-max text-xs bg-slate-700 text-white tracking-wider hover:bg-slate-600"
         >
           View Details
-          {/* <ArrowRight className="size-3 w-max" strokeWidth={2.5} /> */}
         </Link>
       </div>
     </div>
