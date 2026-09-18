@@ -7,13 +7,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // Project Interface
-import type { Project } from "../../../types/project";
+import type { Project } from "@/types/project";
 
 // Project Component
-import { ProjectCard } from "../components/ProjectCard";
+import { ProjectCard } from "./ProjectCard";
 
 // Icons
-import { ChevronRight, ChevronLeft } from "../../../assets/icons/icons";
+import { ChevronRight, ChevronLeft } from "@/assets/icons/icons";
 
 interface ProjectSliderProps {
   projects: Project[];

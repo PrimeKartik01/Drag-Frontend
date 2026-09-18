@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getProjects } from "../../api/api";
-import type { Project } from "../../types/project";
-import ProjectSlider  from "../Projects/components/ProjectSlider";
+import { getProjects } from "@/api/api";
+import type { Project } from "@/types/project";
+import ProjectSlider  from "@/features/projects/components/ProjectSlider";
 
 function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
