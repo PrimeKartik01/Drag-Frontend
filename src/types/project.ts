@@ -34,6 +34,8 @@ export interface Project {
   township: Township | null;
   property_category: PropertyCategory | null;
   property_type: PropertyType | null;
+  
+  media: ProjectMedia;
 }
 
 export interface Builder {
@@ -73,4 +75,11 @@ export interface ProjectsResponse {
   data: Project[];
   success: boolean;
   message: string;
+}
+
+export interface ProjectMedia {
+  photos: [];
+  videos: [];
+  floor_plans: [];
+  amenities: [];
 }

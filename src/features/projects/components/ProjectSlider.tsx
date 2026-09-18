@@ -36,6 +36,7 @@ function ProjectSlider({ projects }: ProjectSliderProps) {
           prevEl: ".project-slider-prev",
           nextEl: ".project-slider-next",
         }}
+        loop={true}
         spaceBetween={30}
         slidesPerView={1}
         breakpoints={{

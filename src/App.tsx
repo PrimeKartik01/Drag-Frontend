@@ -1,13 +1,13 @@
 import Projects from "./pages/Projects/Projects.tsx";
+import { ProjectDetails } from "@/features/projects/components/ProjectDetails";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-
   return (
-    <>
-      <div className="border-red-500 border">
-        <Projects />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Projects />} />
+      <Route path="/projects/:slug" element={<ProjectDetails />} />
+    </Routes>
   );
 }
 
