@@ -24,10 +24,10 @@ function ProjectSlider({ projects }: ProjectSliderProps) {
     <div className="relative">
       <button
         type="button"
-        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/30 p-1 shadow-md"
+        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1 shadow-md"
         aria-label="Previous projects"
       >
-        <ChevronLeft className="text-white" />
+        <ChevronLeft className="text-cyan-900" />
       </button>
 
       <Swiper
@@ -57,10 +57,10 @@ function ProjectSlider({ projects }: ProjectSliderProps) {
 
       <button
         type="button"
-        className="project-slider-next absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/30 p-1 shadow-md"
+        className="project-slider-next absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1 shadow-md"
         aria-label="Next projects"
       >
-        <ChevronRight className="text-white" />
+        <ChevronRight className="text-cyan-900" />
       </button>
     </div>
   );
