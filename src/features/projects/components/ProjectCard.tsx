@@ -37,7 +37,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
 
-      <div className="px-6 py-4">
+      <div className="px-3 md:px-4 py-4">
         <h2 className="font-bold text-md xl:text-lg uppercase text-slate-700">
           {project.name}
         </h2>
