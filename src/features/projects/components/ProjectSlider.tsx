@@ -36,7 +36,7 @@ function ProjectSlider({ projects }: ProjectSliderProps) {
           prevEl: ".project-slider-prev",
           nextEl: ".project-slider-next",
         }}
-        spaceBetween={18}
+        spaceBetween={30}
         slidesPerView={1}
         breakpoints={{
           640: {

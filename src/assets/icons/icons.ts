@@ -10,6 +10,6 @@ export {
   Search,
   ChevronLeft,
   ChevronRight,
-  LandPlot
-  
+  LandPlot,
+  ArrowRight 
 } from "lucide-react";
