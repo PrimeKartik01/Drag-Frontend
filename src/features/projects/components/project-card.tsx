@@ -6,7 +6,7 @@ import {
   LandPlot,
   IndianRupee,
 } from "@/assets/icons/icons";
-import { Spinner, Skeleton } from "../../../../@/index";
+import { Spinner } from "../../../../@/index";
 import { formatPrice } from "@/utils/formatPrice";
 import { Link } from "react-router-dom";
 
@@ -26,9 +26,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {imageLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-4xl">
             <Spinner />
-
-
-            
           </div>
         )}
         <img
