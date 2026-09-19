@@ -12,8 +12,15 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] })
   ],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: [
+      {
+        find: /^@\/components\//,
+        replacement: `${path.resolve(__dirname, "./@/components")}/`,
+      },
+      {
+        find: "@",
+        replacement: path.resolve(__dirname, "./src"),
+      },
+    ],
   }
 })
