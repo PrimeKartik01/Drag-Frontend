@@ -1,3 +1,4 @@
+// Shadcn Ui component
 import { Skeleton } from "../../../../@/index";
 
 export function ProjectCardSkeleton() {

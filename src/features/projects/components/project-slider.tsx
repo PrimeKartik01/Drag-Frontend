@@ -26,7 +26,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
     <div className="relative">
       <button
         type="button"
-        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1 shadow-md"
+        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1"
         aria-label="Previous projects"
       >
         <ChevronLeft className="text-cyan-900" />
@@ -49,6 +49,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             slidesPerView: 3,
           },
         }}
+       
       >
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (
@@ -58,7 +59,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             ))
           : projects.map((project) => (
               <SwiperSlide key={project.id}>
-                <ProjectCard project={project} />
+                <ProjectCard project={project}/>
               </SwiperSlide>
             ))}
       </Swiper>
