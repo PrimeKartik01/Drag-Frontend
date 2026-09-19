@@ -19,10 +19,9 @@ import { ProjectCardSkeleton } from "./ProjectCardSkeleton";
 interface ProjectSliderProps {
   projects: Project[];
   loading: boolean;
-  error: string | null;
 }
 
-function ProjectSlider({ projects, loading, error }: ProjectSliderProps) {
+function ProjectSlider({ projects, loading }: ProjectSliderProps) {
   return (
     <div className="relative">
       <button
@@ -51,25 +50,17 @@ function ProjectSlider({ projects, loading, error }: ProjectSliderProps) {
           },
         }}
       >
-        {loading ? (
-          Array.from({ length: 6 }).map((_, index) => (
-            <SwiperSlide key={index}>
-              <ProjectCardSkeleton />
-            </SwiperSlide>
-          ))
-        ) : error ? (
-          <SwiperSlide>
-            <div className="flex min-h-60 items-center justify-center">
-              <p className="text-sm text-red-500">{error}</p>
-            </div>
-          </SwiperSlide>
-        ) : (
-          projects.map((project) => (
-            <SwiperSlide key={project.id}>
-              <ProjectCard project={project} />
-            </SwiperSlide>
-          ))
-        )}
+        {loading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <SwiperSlide key={index}>
+                <ProjectCardSkeleton />
+              </SwiperSlide>
+            ))
+          : projects.map((project) => (
+              <SwiperSlide key={project.id}>
+                <ProjectCard project={project} />
+              </SwiperSlide>
+            ))}
       </Swiper>
 
       <button
