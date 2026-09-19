@@ -6,7 +6,7 @@ import {
   LandPlot,
   IndianRupee,
 } from "@/assets/icons/icons";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner, Skeleton } from "../../../../@/index";
 import { formatPrice } from "@/utils/formatPrice";
 import { Link } from "react-router-dom";
 
@@ -24,12 +24,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <div className="border border-gray-300 w-full rounded-4xl font-inter p-2 shadow-xl">
       <div className="relative h-60">
         {imageLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-4xl">
             <Spinner />
+
+
+            
           </div>
         )}
         <img
-          src={project.featured_image || fallbackImage}
+          src={project.featured_image ||fallbackImage }
           alt={project.name}
           onLoad={() => setImageLoading(false)}
           onError={() => setImageLoading(false)}

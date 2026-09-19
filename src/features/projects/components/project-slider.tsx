@@ -10,16 +10,19 @@ import "swiper/css/pagination";
 import type { Project } from "@/types/project";
 
 // Project Component
-import { ProjectCard } from "./ProjectCard";
+import { ProjectCard } from "./project-card";
 
 // Icons
 import { ChevronRight, ChevronLeft } from "@/assets/icons/icons";
+import { ProjectCardSkeleton } from "./ProjectCardSkeleton";
 
 interface ProjectSliderProps {
   projects: Project[];
+  loading: boolean;
+  error: string | null;
 }
 
-function ProjectSlider({ projects }: ProjectSliderProps) {
+function ProjectSlider({ projects, loading, error }: ProjectSliderProps) {
   return (
     <div className="relative">
       <button
@@ -41,18 +44,32 @@ function ProjectSlider({ projects }: ProjectSliderProps) {
         slidesPerView={1}
         breakpoints={{
           640: {
-            slidesPerView: 3,
+            slidesPerView: 2,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
         }}
       >
-        {projects.map((project) => (
-          <SwiperSlide key={project.id} className="pt-2 pb-8 px-2">
-            <ProjectCard project={project} />
+        {loading ? (
+          Array.from({ length: 6 }).map((_, index) => (
+            <SwiperSlide key={index}>
+              <ProjectCardSkeleton />
+            </SwiperSlide>
+          ))
+        ) : error ? (
+          <SwiperSlide>
+            <div className="flex min-h-60 items-center justify-center">
+              <p className="text-sm text-red-500">{error}</p>
+            </div>
           </SwiperSlide>
-        ))}
+        ) : (
+          projects.map((project) => (
+            <SwiperSlide key={project.id}>
+              <ProjectCard project={project} />
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
 
       <button

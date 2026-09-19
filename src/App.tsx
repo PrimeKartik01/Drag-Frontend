@@ -1,5 +1,5 @@
-import Projects from "./pages/Projects/Projects.tsx";
-import { ProjectDetails } from "@/features/projects/components/ProjectDetails";
+import Projects from "./pages/projects/projects.tsx";
+import { ProjectDetails } from "@/features/projects/components/project-details";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
