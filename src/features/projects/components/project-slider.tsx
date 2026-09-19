@@ -14,7 +14,7 @@ import { ProjectCard } from "./project-card";
 
 // Icons
 import { ChevronRight, ChevronLeft } from "@/assets/icons/icons";
-import { ProjectCardSkeleton } from "./ProjectCardSkeleton";
+import { ProjectCardSkeleton } from "./project-card-skeleton";
 
 interface ProjectSliderProps {
   projects: Project[];
