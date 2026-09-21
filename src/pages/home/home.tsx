@@ -81,7 +81,7 @@ function Home() {
       {/* Hero Section */}
       <section className="px-4 py-16 md:py-24 bg-white">
 
-        <div className="mx-auto mt-10 bg-gray-100 rounded-3xl">
+        <div className="mx-auto mt-10 bg-gray-100 rounded-3xl w-7xl">
           <ProjectSearch
             projects={projects}
             search={search}

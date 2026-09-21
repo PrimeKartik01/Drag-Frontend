@@ -176,7 +176,7 @@ function ProjectSearch({
     search || city || state || propertyCategory || propertyType || bhk;
 
   return (
-    <div className="w-full border border-white rounded-xl">
+    <div className="w-full border border-white rounded-xl font-inter">
       {/* Main Search */}
       <Command className=" p-3">
         <CommandInput
@@ -222,7 +222,7 @@ function ProjectSearch({
 
       {/* Filters */}
       <div className="grid grid-cols-1 gap-3 border-t border-gray-300 px-3 sm:grid-cols-2 lg:grid-cols-6">
-        <div className="border-r border-gray-300 pr-3 pt-2">
+        <div className="border-r border-gray-300 pt-2">
           <FilterDropdown
             label="City"
             value={city}
@@ -231,7 +231,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pr-3 pt-2">
+        <div className="border-r border-gray-300 pt-2">
           <FilterDropdown
             label="State"
             value={state}
@@ -240,7 +240,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pr-3 pt-2">
+        <div className="border-r border-gray-300 pt-2">
           <FilterDropdown
             label="Category"
             value={propertyCategory}
@@ -249,7 +249,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pr-3 pt-2">
+        <div className="border-r border-gray-300 pt-2">
         <FilterDropdown
           label="Property Type"
           value={propertyType}
@@ -259,7 +259,7 @@ function ProjectSearch({
         </div>
 
         {/* BHK + Partition */}
-        <div className="border-r border-gray-300 pr-3 pt-2">
+        <div className="border-r border-gray-300 pt-2">
           <FilterDropdown
             label="BHK"
             value={bhk}
@@ -270,7 +270,7 @@ function ProjectSearch({
 
         {/* Search */}
         <div className="flex w-full items-center px-6 text-sm py-3">
-          <p className="w-full rounded-2xl border py-3 text-center">Search</p>
+          <p className="w-full rounded-2xl border py-3 text-white font-medium text-center bg-cyan-900">Search</p>
         </div>
       </div>
 
