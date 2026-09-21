@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ChevronDown, Search, X } from "lucide-react";
+import { ChevronDown, Search, X } from "@/assets/icons/icons";
 
 import {
   Command,
@@ -57,10 +57,7 @@ function FilterDropdown({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
-          <Button
-            variant="outline"
-            className="h-11 w-full justify-between rounded-xl px-4 font-normal"
-          />
+          <Button className="h-11 w-full justify-between rounded-xl px-4 font-normal" />
         }
       >
         <span className={value ? "text-foreground" : "text-muted-foreground"}>
@@ -75,9 +72,7 @@ function FilterDropdown({
           <CommandInput placeholder={`Search ${label.toLowerCase()}...`} />
 
           <CommandList>
-            <CommandEmpty>
-              No {label.toLowerCase()} found.
-            </CommandEmpty>
+            <CommandEmpty>No {label.toLowerCase()} found.</CommandEmpty>
 
             <CommandGroup>
               {options.map((option) => (
@@ -122,7 +117,7 @@ function ProjectSearch({
       ...new Set(
         projects
           .map((project) => project.city?.name)
-          .filter((value): value is string => Boolean(value))
+          .filter((value): value is string => Boolean(value)),
       ),
     ];
   }, [projects]);
@@ -132,7 +127,7 @@ function ProjectSearch({
       ...new Set(
         projects
           .map((project) => project.state?.name)
-          .filter((value): value is string => Boolean(value))
+          .filter((value): value is string => Boolean(value)),
       ),
     ];
   }, [projects]);
@@ -142,7 +137,7 @@ function ProjectSearch({
       ...new Set(
         projects
           .map((project) => project.property_category?.name)
-          .filter((value): value is string => Boolean(value))
+          .filter((value): value is string => Boolean(value)),
       ),
     ];
   }, [projects]);
@@ -152,7 +147,7 @@ function ProjectSearch({
       ...new Set(
         projects
           .map((project) => project.property_type?.name)
-          .filter((value): value is string => Boolean(value))
+          .filter((value): value is string => Boolean(value)),
       ),
     ];
   }, [projects]);
@@ -162,7 +157,7 @@ function ProjectSearch({
       ...new Set(
         projects
           .map((project) => project.bhk)
-          .filter((value): value is string => Boolean(value))
+          .filter((value): value is string => Boolean(value)),
       ),
     ];
   }, [projects]);
@@ -178,19 +173,14 @@ function ProjectSearch({
   };
 
   const hasFilters =
-    search ||
-    city ||
-    state ||
-    propertyCategory ||
-    propertyType ||
-    bhk;
+    search || city || state || propertyCategory || propertyType || bhk;
 
   return (
-    <div className="w-full space-y-3">
+    <div className="w-full border border-white rounded-xl">
       {/* Main Search */}
-      <Command>
+      <Command className=" p-3">
         <CommandInput
-          placeholder="Search project, city or builder..."
+          placeholder="Search"
           value={search}
           onValueChange={(value) => {
             setSearch(value);
@@ -231,50 +221,62 @@ function ProjectSearch({
       </Command>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        <FilterDropdown
-          label="City"
-          value={city}
-          options={cities}
-          onChange={setCity}
-        />
+      <div className="grid grid-cols-1 gap-3 border-t border-gray-300 px-3 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="border-r border-gray-300 pr-3 pt-2">
+          <FilterDropdown
+            label="City"
+            value={city}
+            options={cities}
+            onChange={setCity}
+          />
+        </div>
 
-        <FilterDropdown
-          label="State"
-          value={state}
-          options={states}
-          onChange={setState}
-        />
+        <div className="border-r border-gray-300 pr-3 pt-2">
+          <FilterDropdown
+            label="State"
+            value={state}
+            options={states}
+            onChange={setState}
+          />
+        </div>
 
-        <FilterDropdown
-          label="Category"
-          value={propertyCategory}
-          options={propertyCategories}
-          onChange={setPropertyCategory}
-        />
+        <div className="border-r border-gray-300 pr-3 pt-2">
+          <FilterDropdown
+            label="Category"
+            value={propertyCategory}
+            options={propertyCategories}
+            onChange={setPropertyCategory}
+          />
+        </div>
 
+        <div className="border-r border-gray-300 pr-3 pt-2">
         <FilterDropdown
           label="Property Type"
           value={propertyType}
           options={propertyTypes}
           onChange={setPropertyType}
         />
+        </div>
 
-        <FilterDropdown
-          label="BHK"
-          value={bhk}
-          options={bhks}
-          onChange={setBhk}
-        />
+        {/* BHK + Partition */}
+        <div className="border-r border-gray-300 pr-3 pt-2">
+          <FilterDropdown
+            label="BHK"
+            value={bhk}
+            options={bhks}
+            onChange={setBhk}
+          />
+        </div>
+
+        {/* Search */}
+        <div className="flex w-full items-center px-6 text-sm py-3">
+          <p className="w-full rounded-2xl border py-3 text-center">Search</p>
+        </div>
       </div>
 
       {/* Clear Filters */}
       {hasFilters && (
-        <Button
-          variant="ghost"
-          onClick={clearFilters}
-          className="gap-2 px-2"
-        >
+        <Button variant="ghost" onClick={clearFilters} className="gap-2 px-2">
           <X className="size-4" />
           Clear Filters
         </Button>
