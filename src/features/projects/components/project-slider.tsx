@@ -22,6 +22,8 @@ interface ProjectSliderProps {
 }
 
 function ProjectSlider({ projects, loading }: ProjectSliderProps) {
+  const shouldLoop = loading || projects.length >= 5;
+
   return (
     <div className="relative">
       <button
@@ -38,7 +40,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
           prevEl: ".project-slider-prev",
           nextEl: ".project-slider-next",
         }}
-        loop={true}
+        loop={shouldLoop}
         spaceBetween={20}
         slidesPerView={1}
         breakpoints={{
@@ -46,7 +48,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             slidesPerView: 2,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 4,
           },
         }}
        
