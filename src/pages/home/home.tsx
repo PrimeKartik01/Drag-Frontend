@@ -5,6 +5,8 @@ import type { Project } from "@/types/project";
 
 import ProjectSearch from "@/features/projects/components/ProjectSearch";
 import ProjectSlider from "@/features/projects/components/project-slider";
+import heroVideo from "@/assets/icons/video/Website-video.mp4";
+import Header from "../../components/header";
 
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -40,22 +42,18 @@ function Home() {
         project.city?.name?.toLowerCase().includes(searchValue) ||
         project.builder?.name?.toLowerCase().includes(searchValue);
 
-      const matchesCity =
-        !city || project.city?.name === city;
+      const matchesCity = !city || project.city?.name === city;
 
-      const matchesState =
-        !state || project.state?.name === state;
+      const matchesState = !state || project.state?.name === state;
 
       const matchesCategory =
         !propertyCategory ||
         project.property_category?.name === propertyCategory;
 
       const matchesPropertyType =
-        !propertyType ||
-        project.property_type?.name === propertyType;
+        !propertyType || project.property_type?.name === propertyType;
 
-      const matchesBhk =
-        !bhk || project.bhk === bhk;
+      const matchesBhk = !bhk || project.bhk === bhk;
 
       return (
         matchesSearch &&
@@ -66,38 +64,39 @@ function Home() {
         matchesBhk
       );
     });
-  }, [
-    projects,
-    search,
-    city,
-    state,
-    propertyCategory,
-    propertyType,
-    bhk,
-  ]);
+  }, [projects, search, city, state, propertyCategory, propertyType, bhk]);
 
   return (
-    <main className="mx-auto w-full max-w-[1440px]">
+    <main className="mx-auto w-full max-w-[1522px]">
+      <Header />
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-24 bg-white">
+      <section className="relative isolate flex min-h-screen items-center overflow-hidden px-4 py-16 md:py-24">
+        <video
+          className="absolute inset-0 top-0 -z-20 size-full object-cover"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        />
+        {/* <div className="absolute inset-0 -z-10 bg-black/35" /> */}
 
-        <div className="mx-auto mt-10 bg-gray-100 rounded-3xl w-7xl">
-          <ProjectSearch
-            projects={projects}
-            search={search}
-            city={city}
-            state={state}
-            propertyCategory={propertyCategory}
-            propertyType={propertyType}
-            bhk={bhk}
-            setSearch={setSearch}
-            setCity={setCity}
-            setState={setState}
-            setPropertyCategory={setPropertyCategory}
-            setPropertyType={setPropertyType}
-            setBhk={setBhk}
-          />
-        </div>
+        <ProjectSearch
+          projects={projects}
+          search={search}
+          city={city}
+          state={state}
+          propertyCategory={propertyCategory}
+          propertyType={propertyType}
+          bhk={bhk}
+          setSearch={setSearch}
+          setCity={setCity}
+          setState={setState}
+          setPropertyCategory={setPropertyCategory}
+          setPropertyType={setPropertyType}
+          setBhk={setBhk}
+        />
       </section>
 
       {/* Featured Projects Section */}
@@ -116,10 +115,7 @@ function Home() {
           </p>
         </div>
 
-        <ProjectSlider
-          projects={filteredProjects}
-          loading={loading}
-        />
+        <ProjectSlider projects={filteredProjects} loading={loading} />
       </section>
     </main>
   );

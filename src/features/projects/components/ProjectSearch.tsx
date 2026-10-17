@@ -60,7 +60,9 @@ function FilterDropdown({
           <Button className="h-11 w-full justify-between rounded-xl px-4 font-normal" />
         }
       >
-        <span className={value ? "text-foreground" : "text-muted-foreground"}>
+        <span
+          className={`min-w-0 truncate ${value ? "text-foreground" : "text-muted-foreground"}`}
+        >
           {value || label}
         </span>
 
@@ -176,11 +178,11 @@ function ProjectSearch({
     search || city || state || propertyCategory || propertyType || bhk;
 
   return (
-    <div className="w-full border border-white rounded-xl font-inter">
+    <div className="absolute bg-white inset-x-4 bottom-8 z-10 mx-auto w-auto max-w-5xl min-w-0 rounded-3xl border border-white/30 font-inter shadow-xl">
       {/* Main Search */}
-      <Command className=" p-3">
+      <Command className="min-w-0 p-3">
         <CommandInput
-          placeholder="Search"
+          placeholder="Find Your Homes"
           value={search}
           onValueChange={(value) => {
             setSearch(value);
@@ -221,8 +223,8 @@ function ProjectSearch({
       </Command>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 gap-3 border-t border-gray-300 px-3 sm:grid-cols-2 lg:grid-cols-6">
-        <div className="border-r border-gray-300 pt-2">
+      <div className="grid min-w-0 grid-cols-1 gap-3 border-t border-gray-300 px-3 sm:grid-cols-2 xl:grid-cols-5">
+        <div className="min-w-0 pt-2 sm:border-r sm:border-gray-300 xl:border-r-gray-300">
           <FilterDropdown
             label="City"
             value={city}
@@ -231,7 +233,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pt-2">
+        <div className="min-w-0 pt-2 sm:border-r sm:border-gray-300 xl:border-r-gray-300">
           <FilterDropdown
             label="State"
             value={state}
@@ -240,7 +242,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pt-2">
+        <div className="min-w-0 pt-2 sm:border-r sm:border-gray-300 xl:border-r-gray-300">
           <FilterDropdown
             label="Category"
             value={propertyCategory}
@@ -249,28 +251,23 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="border-r border-gray-300 pt-2">
-        <FilterDropdown
-          label="Property Type"
-          value={propertyType}
-          options={propertyTypes}
-          onChange={setPropertyType}
-        />
+        <div className="min-w-0 pt-2 sm:border-r sm:border-gray-300 xl:border-r-gray-300">
+          <FilterDropdown
+            label="Property Type"
+            value={propertyType}
+            options={propertyTypes}
+            onChange={setPropertyType}
+          />
         </div>
 
         {/* BHK + Partition */}
-        <div className="border-r border-gray-300 pt-2">
+        <div className="min-w-0 pt-2">
           <FilterDropdown
             label="BHK"
             value={bhk}
             options={bhks}
             onChange={setBhk}
           />
-        </div>
-
-        {/* Search */}
-        <div className="flex w-full items-center px-6 text-sm py-3">
-          <p className="w-full rounded-2xl border py-3 text-white font-medium text-center bg-cyan-900">Search</p>
         </div>
       </div>
 
