@@ -22,7 +22,7 @@ interface ProjectSliderProps {
 }
 
 function ProjectSlider({ projects, loading }: ProjectSliderProps) {
-  const shouldLoop = loading || projects.length >= 5;
+  const shouldLoop = loading || projects.length >= 4;
 
   return (
     <div className="relative">
@@ -41,7 +41,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
           nextEl: ".project-slider-next",
         }}
         loop={shouldLoop}
-        spaceBetween={20}
+        spaceBetween={0}
         slidesPerView={1}
         breakpoints={{
           640: {

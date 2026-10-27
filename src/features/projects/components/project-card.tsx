@@ -27,10 +27,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div className="pt-3 pb-7 px-2">
-      <div className="border border-gray-300 w-full rounded-4xl font-inter shadow-xl p-2">
+      <div className="border border-gray-300 w-full rounded-xl font-inter shadow-xl p-3">
         <div className="relative h-60">
           {imageLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-4xl">
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-xl">
               <Spinner />
             </div>
           )}
@@ -39,7 +39,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             alt={project.name}
             onLoad={() => setImageLoading(false)}
             onError={() => setImageLoading(false)}
-            className="object-cover h-full w-full rounded-4xl"
+            className="object-cover h-full w-full rounded-xl"
           />
         </div>
 
