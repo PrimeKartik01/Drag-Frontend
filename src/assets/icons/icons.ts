@@ -11,5 +11,7 @@ export {
   ChevronLeft,
   ChevronRight,
   LandPlot,
-  ArrowRight 
+  ArrowRight,
+  ChevronDown,
+  X
 } from "lucide-react";

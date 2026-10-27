@@ -1,7 +1,11 @@
+// React Hooks
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// API import
 import { getProject } from "@/api/api";
+
+// Project Interface
 import type { Project } from "@/types/project";
 
 export function ProjectDetails() {

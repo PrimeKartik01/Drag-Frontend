@@ -14,7 +14,7 @@ import { ProjectCard } from "./project-card";
 
 // Icons
 import { ChevronRight, ChevronLeft } from "@/assets/icons/icons";
-import { ProjectCardSkeleton } from "./ProjectCardSkeleton";
+import { ProjectCardSkeleton } from "./project-card-skeleton";
 
 interface ProjectSliderProps {
   projects: Project[];
@@ -22,11 +22,13 @@ interface ProjectSliderProps {
 }
 
 function ProjectSlider({ projects, loading }: ProjectSliderProps) {
+  const shouldLoop = loading || projects.length >= 4;
+
   return (
     <div className="relative">
       <button
         type="button"
-        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1 shadow-md"
+        className="project-slider-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/50 p-1"
         aria-label="Previous projects"
       >
         <ChevronLeft className="text-cyan-900" />
@@ -38,17 +40,18 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
           prevEl: ".project-slider-prev",
           nextEl: ".project-slider-next",
         }}
-        loop={true}
-        spaceBetween={20}
+        loop={shouldLoop}
+        spaceBetween={0}
         slidesPerView={1}
         breakpoints={{
           640: {
             slidesPerView: 2,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 4,
           },
         }}
+       
       >
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (
@@ -58,7 +61,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             ))
           : projects.map((project) => (
               <SwiperSlide key={project.id}>
-                <ProjectCard project={project} />
+                <ProjectCard project={project}/>
               </SwiperSlide>
             ))}
       </Swiper>

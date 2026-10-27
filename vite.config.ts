@@ -15,11 +15,11 @@ export default defineConfig({
     alias: [
       {
         find: /^@\/components\//,
-        replacement: `${path.resolve(__dirname, "./@/components")}/`,
+        replacement: `${path.resolve(import.meta.dirname, "./@/components")}/`,
       },
       {
         find: "@",
-        replacement: path.resolve(__dirname, "./src"),
+        replacement: path.resolve(import.meta.dirname, "./src"),
       },
     ],
   }
