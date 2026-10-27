@@ -70,7 +70,7 @@ function Home() {
     <main className="mx-auto w-full max-w-[1522px]">
       <Header />
       {/* Hero Section */}
-      <section className="relative isolate flex min-h-screen items-center overflow-hidden px-4 py-16 md:py-24">
+      <section className="relative isolate flex h-[35rem] md:min-h-screen items-center overflow-hidden px-4 py-16 md:py-24">
         <video
           className="absolute inset-0 top-0 -z-20 size-full object-cover"
           src={heroVideo}

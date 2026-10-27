@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
+
 import { Button } from "../../@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../@/components/ui/sheet";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,57 +25,86 @@ function Header() {
     };
   }, []);
 
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 max-w-[1522px] mx-auto ${
+      className={`fixed left-0 top-0 z-50 mx-auto w-full max-w-[1522px] transition-all duration-300 ${
         scrolled
           ? "bg-gray-800/90 shadow-lg backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 w-full items-center justify-between px-6">
+      <div className="flex h-20 w-full items-center justify-between px-6">
         {/* Logo */}
-        <a
-          href="/"
-          className="text-xl font-bold tracking-wide text-white"
-        >
+        <a href="/" className="text-xl font-bold tracking-wide text-white">
           SS PRIME
         </a>
 
-        {/* Navigation */}
-        <nav className="flex items-center gap-8">
-          <a
-            href="/"
-            className="text-sm font-medium text-white transition hover:text-white/70"
-          >
-            Home
-          </a>
-
-          <a
-            href="/projects"
-            className="text-sm font-medium text-white transition hover:text-white/70"
-          >
-            Projects
-          </a>
-
-          <a
-            href="#about"
-            className="text-sm font-medium text-white transition hover:text-white/70"
-          >
-            About
-          </a>
-
-          <a
-            href="#contact"
-            className="text-sm font-medium text-white transition hover:text-white/70"
-          >
-            Contact
-          </a>
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm font-medium text-white transition hover:text-white/70"
+            >
+              {link.label}
+            </a>
+          ))}
 
           <Button className="rounded-xl bg-white text-black hover:bg-white/90">
             Enquire Now
           </Button>
         </nav>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Open navigation menu"
+                className="text-white hover:bg-white/10 hover:text-white"
+              >
+                <Menu className="size-6" />
+              </Button>
+            </SheetTrigger>
+
+            <SheetContent
+              side="right"
+              className="w-[300px] border-white/10 bg-gray-900 text-white sm:w-[360px] duration-600 ease-in-out data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right"
+            >
+              <SheetHeader>
+                <SheetTitle className="text-left text-xl font-bold tracking-wide text-white">
+                  SS PRIME
+                </SheetTitle>
+              </SheetHeader>
+
+              <nav className="mt-8 flex flex-col gap-2 px-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="rounded-lg px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+
+                <Button className="mt-4 w-full rounded-xl bg-white text-black hover:bg-white/90">
+                  Enquire Now
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
