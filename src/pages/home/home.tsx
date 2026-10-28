@@ -70,7 +70,7 @@ function Home() {
     <main className="mx-auto w-full max-w-[1522px]">
       <Header />
       {/* Hero Section */}
-      <section className="relative isolate flex h-[35rem] md:min-h-screen items-center overflow-hidden px-4 py-16 md:py-24">
+      <section className="relative isolate flex h-[32rem] items-center overflow-hidden px-4 py-16 md:py-24">
         <video
           className="absolute inset-0 top-0 -z-20 size-full object-cover"
           src={heroVideo}
@@ -100,18 +100,58 @@ function Home() {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="px-4 py-10">
-        <div className="mb-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-emerald-700">
-            Explore Properties
+      <section className="px-4 md:px-6 py-10">
+        <div className="">
+          <p className="text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2">
+            Properties
+            <span>
+              <svg
+                width="32"
+                height="2"
+                viewBox="0 0 32 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="0"
+                  y1="1"
+                  x2="32"
+                  y2="1"
+                  stroke="#C59B27"
+                  strokeWidth="2"
+                />
+              </svg>
+            </span>
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold text-slate-800">
-            Featured Projects
+          <h2 className="mt-2 text-2xl md:text-4xl font-bold ">
+            Our <span className="text-gold">Featured</span> Projects
           </h2>
+        </div>
 
+        <div className="flex justify-between items-center">
           <p className="mt-2 text-sm text-slate-500">
             Explore our latest residential and commercial projects.
+          </p>
+
+          <p className="text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-full px-5 py-1 flex justify-center items-center gap-2 group transition-all duration-300">
+            View All Properties
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                ></path>
+              </svg>
+            </span>
           </p>
         </div>
 

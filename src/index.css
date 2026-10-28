@@ -4,6 +4,7 @@
 @theme {
   --font-inter: "Inter", sans-serif;
   --text-xxs: 10px;
+  --color-gold: #B68D37;
 }
 
 * {
@@ -12,8 +13,4 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  /* font-family: Arial, sans-serif; */
 }

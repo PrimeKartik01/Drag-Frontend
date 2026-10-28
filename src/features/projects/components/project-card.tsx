@@ -28,7 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="pt-3 pb-7 px-2">
       <div className="border border-gray-300 w-full rounded-xl font-inter shadow-xl p-3">
-        <div className="relative h-60">
+        <div className="relative h-40">
           {imageLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-xl">
               <Spinner />
@@ -41,6 +41,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
             onError={() => setImageLoading(false)}
             className="object-cover h-full w-full rounded-xl"
           />
+
+          <p className="absolute top-2 right-2 text-black bg-white rounded-lg px-3 py-1 text-sm font-medium">
+            {project.property_category?.name}
+          </p>
         </div>
 
         <div className="px-3 md:px-4 py-4">
@@ -57,6 +61,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="flex items-center justify-start gap-3 w-max border-gray-300 ">
               <BedDouble className="size-3 w-max" />
               <p>{project.bhk}</p>
+            </div>
+
+            <div className="flex items-center justify-start gap-3 w-max border-gray-300 ">
+              <BedDouble className="size-3 w-max" />
+              {project.property_category?.name}
             </div>
 
             <div className="flex items-center justify-self-start  gap-3 w-max ">
