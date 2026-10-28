@@ -61,7 +61,7 @@ function FilterDropdown({
         }
       >
         <span
-          className={`min-w-0 truncate ${value ? "text-foreground" : "text-muted-foreground"}`}
+          className={`min-w-0 truncate text-sm ${value ? "text-foreground" : "text-muted-foreground"}`}
         >
           {value || label}
         </span>
@@ -69,8 +69,8 @@ function FilterDropdown({
         <ChevronDown className="size-4" />
       </PopoverTrigger>
 
-      <PopoverContent className="w-[220px] p-0" align="start">
-        <Command>
+      <PopoverContent className="w-[220px] p-0 p-2 bg-white ring-0" align="start">
+        <Command  >
           <CommandInput placeholder={`Search ${label.toLowerCase()}...`} />
 
           <CommandList>
@@ -178,7 +178,7 @@ function ProjectSearch({
     search || city || state || propertyCategory || propertyType || bhk;
 
   return (
-    <div className="absolute bg-white/80 inset-x-4 bottom-8 z-10 mx-auto w-auto max-w-5xl min-w-0 rounded-xl border border-white/30 font-inter shadow-xl">
+    <div className="absolute bg-white inset-x-4 bottom-15 z-10 mx-auto w-auto max-w-5xl min-w-0 rounded-xl border border-white/30 font-inter shadow-xl">
       {/* Main Search */}
       <Command className="min-w-0 p-3">
         <CommandInput
@@ -223,7 +223,7 @@ function ProjectSearch({
       </Command>
 
       {/* Filters */}
-      <div className="md:grid min-w-0 grid-cols-1 gap-3 border-t border-gray-400 px-3 py-1 sm:grid-cols-2 xl:grid-cols-5 hidden">
+      <div className="md:grid min-w-0 grid-cols-1 gap-3 border-t border-gray-400 px-3 py-1 sm:grid-cols-2 md:grid-cols-5 hidden">
         <div className="min-w-0 py-1 border-r border-gray-500">
           <FilterDropdown
             label="City"
@@ -273,8 +273,8 @@ function ProjectSearch({
 
       {/* Clear Filters */}
       {hasFilters && (
-        <Button variant="ghost" onClick={clearFilters} className="gap-2 px-2">
-          <X className="size-4" />
+        <Button variant="ghost" onClick={clearFilters} className="gap-2 px-2 text-xs md:text-sm">
+          <X className="size-3" />
           Clear Filters
         </Button>
       )}
