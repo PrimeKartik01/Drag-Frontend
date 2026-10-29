@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import logo from "@/assets/img/logo.webp";
+import mobilelogo from "@/assets/img/mobilelogo.webp";
+
 
 import { Button } from "../../@/components/ui/button";
 import {
@@ -44,7 +46,7 @@ function Header() {
         {/* Logo */}
         <a href="/" className="inline-flex items-center">
           <img
-            src={logo}
+            src={mobilelogo}
             alt="SS PRIME"
             className="h-18 w-auto object-contain"
           />
@@ -62,7 +64,7 @@ function Header() {
             </a>
           ))}
 
-          <Button className="rounded-xl bg-white text-black hover:bg-white/90">
+          <Button className="rounded-xl bg-gold text-white hover:bg-gold-100">
             Enquire Now
           </Button>
         </nav>
@@ -88,7 +90,7 @@ function Header() {
               <SheetHeader>
                 <a href="/" className="inline-flex items-center">
                   <img
-                    src={logo}
+                    src={mobilelogo}
                     alt="SS PRIME"
                     className="h-24 w-30 object-contain"
                   />
@@ -100,13 +102,13 @@ function Header() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="rounded-lg px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                    className="rounded-lg px-4 py-3 text-sm font-medium text-white/70 transition hover:bg-white/10"
                   >
                     {link.label}
                   </a>
                 ))}
 
-                <Button className="w-full rounded-xl bg-white text-black hover:bg-white/90">
+                <Button className="w-full rounded-xl bg-gold text-white hover:bg-gold-100">
                   Enquire Now
                 </Button>
               </nav>

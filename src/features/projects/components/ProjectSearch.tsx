@@ -61,7 +61,7 @@ function FilterDropdown({
         }
       >
         <span
-          className={`min-w-0 truncate text-sm ${value ? "text-foreground" : "text-muted-foreground"}`}
+          className={`min-w-0 truncate text-sm text-gray-700 ${value ? "text-foreground" : "text-muted-foreground"}`}
         >
           {value || label}
         </span>
@@ -223,8 +223,8 @@ function ProjectSearch({
       </Command>
 
       {/* Filters */}
-      <div className="md:grid min-w-0 grid-cols-1 gap-3 border-t border-gray-400 px-3 py-1 sm:grid-cols-2 md:grid-cols-5 hidden">
-        <div className="min-w-0 py-1 border-r border-gray-500">
+      <div className=" md:grid min-w-0 grid-cols-1 gap-3 border-t border-gray-400 px-3 py-1 sm:grid-cols-2 md:grid-cols-5 hidden">
+        <div className="min-w-0 py-1 border-r border-gray-400">
           <FilterDropdown
             label="City"
             value={city}
@@ -233,7 +233,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="min-w-0 py-1 border-r border-gray-500">
+        <div className="min-w-0 py-1 border-r border-gray-400">
           <FilterDropdown
             label="State"
             value={state}
@@ -242,7 +242,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="min-w-0 py-1 border-r border-gray-500">
+        <div className="min-w-0 py-1 border-r border-gray-400">
           <FilterDropdown
             label="Category"
             value={propertyCategory}
@@ -251,7 +251,7 @@ function ProjectSearch({
           />
         </div>
 
-        <div className="min-w-0 py-1 border-r border-gray-500">
+        <div className="min-w-0 py-1 border-r border-gray-400">
           <FilterDropdown
             label="Property Type"
             value={propertyType}

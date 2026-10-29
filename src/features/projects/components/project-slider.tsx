@@ -48,10 +48,12 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             slidesPerView: 2,
           },
           1024: {
+            slidesPerView: 3,
+          },
+          1440: {
             slidesPerView: 4,
           },
         }}
-       
       >
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (
@@ -61,7 +63,7 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
             ))
           : projects.map((project) => (
               <SwiperSlide key={project.id}>
-                <ProjectCard project={project}/>
+                <ProjectCard project={project} />
               </SwiperSlide>
             ))}
       </Swiper>

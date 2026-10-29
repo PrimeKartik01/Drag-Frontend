@@ -42,30 +42,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="object-cover h-full w-full rounded-xl"
           />
 
-          <p className="absolute top-2 right-2 text-black bg-white rounded-lg px-3 py-1 text-sm font-medium">
+          <p className="absolute top-2 right-2 text-black text-white rounded-lg px-3 py-1 text-sm font-medium bg-gold ">
             {project.property_category?.name}
           </p>
         </div>
 
-        <div className="px-3 md:px-4 py-4">
-          <h2 className="font-bold text-md xl:text-lg uppercase text-slate-700">
+        <div className="px-3 md:px-4 pt-4">
+          <h2 className="font-bold text-sm uppercase text-gold">
             {project.name}
           </h2>
 
-          <div className="flex items-center justify-start w-full gap-1 mt-1 text-sm text-gray-600">
+          <div className="flex items-center justify-start w-full gap-1 mt-1 text-xs font-semibold text-slate-900">
             <MapPin className="size-3 w-max" strokeWidth={2.5} />
-            <p className="w-max uppercase font-medium">{project.city?.name}</p>
+            <p className="w-max uppercase">{project.city?.name}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 text-sm border-gray-300 pt-2 mt-2 font-medium text-gray-600">
+          <div className="flex justify-between text-xs border-gray-300 pt-2 mt-2 font-semibold text-slate-900">
             <div className="flex items-center justify-start gap-3 w-max border-gray-300 ">
               <BedDouble className="size-3 w-max" />
               <p>{project.bhk}</p>
-            </div>
-
-            <div className="flex items-center justify-start gap-3 w-max border-gray-300 ">
-              <BedDouble className="size-3 w-max" />
-              {project.property_category?.name}
             </div>
 
             <div className="flex items-center justify-self-start  gap-3 w-max ">
@@ -75,15 +70,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           <div className="flex items-center justify-self-start mt-2 gap-1 w-max ">
-            <IndianRupee className="size-4 w-max" strokeWidth={3} />
-            <p className="text-md xl:text-lg font-semibold">
+            <IndianRupee className="size-4 w-max text-gold-100" strokeWidth={3} />
+            <p className="text-sm text-gold-100 font-bold">
               {formatPrice(project.min_price)}
             </p>
           </div>
 
           <Link
             to={`/projects/${project.slug}`}
-            className="mt-2 px-4 py-2 font-light uppercase flex items-center justify-center gap-1 rounded-lg  w-max text-xs bg-slate-700 text-white tracking-wider hover:bg-slate-600"
+            className="mt-2 px-4 py-2 font-medium uppercase flex items-center justify-center gap-1 rounded-lg  w-max text-xs text-white tracking-wider bg-gold hover:bg-gold-100"
           >
             View Details
           </Link>

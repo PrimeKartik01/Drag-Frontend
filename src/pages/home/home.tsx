@@ -100,9 +100,9 @@ function Home() {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="px-4 md:px-6 py-10">
+      <section className="px-2 md:px-6 py-7 bg-gradient-to-br from-[#FFFDF0] via-[#FFFDF9] to-[#FFFDF0]">
         <div className="">
-          <p className="text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2">
+          <p className="text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2 px-2">
             Properties
             <span>
               <svg
@@ -123,36 +123,39 @@ function Home() {
               </svg>
             </span>
           </p>
-
-          <h2 className="mt-2 text-2xl md:text-4xl font-bold ">
-            Our <span className="text-gold">Featured</span> Projects
-          </h2>
         </div>
 
-        <div className="flex justify-between items-center">
-          <p className="mt-2 text-sm text-slate-500">
-            Explore our latest residential and commercial projects.
-          </p>
+        <div className="max-md:flex max-md:justify-between items-center md:flex-col">
 
-          <p className="text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-full px-5 py-1 flex justify-center items-center gap-2 group transition-all duration-300">
-            View All Properties
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                ></path>
-              </svg>
-            </span>
-          </p>
+          <h2 className="mt-2 text-[1.4rem] md:text-4xl font-bold px-2">
+            Our <span className="text-gold">Featured</span> Projects
+          </h2>
+
+          <div className="flex justify-between items-center px-2">
+            <p className="mt-2 text-sm text-slate-500 hidden md:block">
+              Explore our latest residential and commercial projects.
+            </p>
+
+            <p className="text-xs md:text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-xl px-2 py-1.5 flex justify-center items-center gap-2 group transition-all duration-300 mt-2 md:mt-0">
+              View All
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  ></path>
+                </svg>
+              </span>
+            </p>
+          </div>
         </div>
 
         <ProjectSlider projects={filteredProjects} loading={loading} />
