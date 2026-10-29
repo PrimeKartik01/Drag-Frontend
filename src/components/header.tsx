@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import logo from "@/assets/img/logo.webp";
 import mobilelogo from "@/assets/img/mobilelogo.webp";
 
 
