@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import mobilelogo from "@/assets/img/mobilelogo.webp";
-
-
+import mobilelogo from "@/assets/img/mobilelogo.svg";
+import ProjectsMegaMenu from "./ProjectsMegaMenu";
 import { Button } from "../../@/components/ui/button";
 import {
   Sheet,
@@ -31,42 +30,47 @@ function Header() {
     { label: "Projects", href: "/projects" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
+    { label: "Blog", href: "#blog" },
   ];
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 mx-auto w-full left-1/2 -translate-x-1/2 max-w-[1522px] transition-all duration-300 ${
+      className={`fixed left-0 top-0 z-50 mx-auto w-full left-1/2 -translate-x-1/2 px-3 pt-4 md:px-6 max-w-[1522px] transition-all duration-300 ${
         scrolled
           ? "bg-gray-800/90 shadow-lg backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className="flex h-20 w-full items-center justify-between px-3 md:px-6">
+      <div className=" flex h-20 w-full items-center justify-between rounded-3xl">
         {/* Logo */}
-        <a href="/" className="inline-flex items-center">
+        <a href="/" className="inline-flex items-center max-md:h-12 w-26">
           <img
             src={mobilelogo}
             alt="SS PRIME"
-            className="h-18 w-auto object-contain"
+            className=" w-auto h-full object-contain"
           />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 md:flex px-10 py-4 bg-white/20 backdrop-blur-md rounded-3xl">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-white transition hover:text-white/70"
-            >
-              {link.label}
-            </a>
+            link.label === "Projects" ? (
+              <ProjectsMegaMenu key={link.label} />
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-white transition hover:text-white/70"
+              >
+                {link.label}
+              </a>
+            )
           ))}
-
-          <Button className="rounded-xl bg-gold text-white hover:bg-gold-100">
-            Enquire Now
-          </Button>
         </nav>
+
+        <Button className="rounded-xl bg-gold text-white hover:bg-gold-100 hidden md:block">
+          Enquire Now
+        </Button>
 
         {/* Mobile Menu */}
         <div className="md:hidden">

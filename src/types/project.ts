@@ -27,6 +27,7 @@ export interface Project {
   address: string | null;
 
   featured_image: string | null;
+  highlights?: ProjectHighlights[] | null;
 
   builder: Builder | null;
   city: City | null;
@@ -34,8 +35,14 @@ export interface Project {
   township: Township | null;
   property_category: PropertyCategory | null;
   property_type: PropertyType | null;
-  
+
   media: ProjectMedia;
+}
+
+export interface ProjectHighlights {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface Builder {

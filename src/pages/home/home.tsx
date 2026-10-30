@@ -80,7 +80,7 @@ function Home() {
           playsInline
           aria-hidden="true"
         />
-        {/* <div className="absolute inset-0 -z-10 bg-black/35" /> */}
+        <div className="absolute inset-0 bg-black/55" />
 
         <ProjectSearch
           projects={projects}
@@ -101,33 +101,30 @@ function Home() {
 
       {/* Featured Projects Section */}
       <section className="px-2 md:px-6 py-7 bg-gradient-to-br from-[#FFFDF0] via-[#FFFDF9] to-[#FFFDF0]">
-        <div className="">
-          <p className="text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2 px-2">
-            Properties
-            <span>
-              <svg
-                width="32"
-                height="2"
-                viewBox="0 0 32 2"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="0"
-                  y1="1"
-                  x2="32"
-                  y2="1"
-                  stroke="#C59B27"
-                  strokeWidth="2"
-                />
-              </svg>
-            </span>
-          </p>
-        </div>
+        <p className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2 px-2">
+          Properties
+          <span>
+            <svg
+              width="32"
+              height="2"
+              viewBox="0 0 32 2"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="0"
+                y1="1"
+                x2="32"
+                y2="1"
+                stroke="#C59B27"
+                strokeWidth="2"
+              />
+            </svg>
+          </span>
+        </p>
 
         <div className="max-md:flex max-md:justify-between items-center md:flex-col">
-
-          <h2 className="mt-2 text-[1.4rem] md:text-4xl font-bold px-2">
+          <h2 className="text-[1.2rem] md:text-4xl font-bold px-2">
             Our <span className="text-gold">Featured</span> Projects
           </h2>
 
@@ -136,7 +133,7 @@ function Home() {
               Explore our latest residential and commercial projects.
             </p>
 
-            <p className="text-xs md:text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-xl px-2 py-1.5 flex justify-center items-center gap-2 group transition-all duration-300 mt-2 md:mt-0">
+            <p className="text-xs md:text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-lg px-2 py-1.5 flex justify-center items-center gap-2 group transition-all duration-300 md:mt-0">
               View All
               <span>
                 <svg
