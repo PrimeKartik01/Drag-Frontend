@@ -53,7 +53,7 @@ function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex px-10 py-4 bg-white/20 backdrop-blur-md rounded-3xl">
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
             link.label === "Projects" ? (
               <ProjectsMegaMenu key={link.label} />
             ) : (
@@ -64,8 +64,8 @@ function Header() {
               >
                 {link.label}
               </a>
-            )
-          ))}
+            ),
+          )}
         </nav>
 
         <Button className="rounded-xl bg-gold text-white hover:bg-gold-100 hidden md:block">
@@ -75,15 +75,17 @@ function Header() {
         {/* Mobile Menu */}
         <div className="md:hidden">
           <Sheet>
-            <SheetTrigger>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open navigation menu"
-                className="text-white hover:bg-white/10 hover:text-white"
-              >
-                <Menu className="size-6" />
-              </Button>
+            <SheetTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Open navigation menu"
+                  className="text-white hover:bg-white/10 hover:text-white"
+                />
+              }
+            >
+              <Menu className="size-6" />
             </SheetTrigger>
 
             <SheetContent

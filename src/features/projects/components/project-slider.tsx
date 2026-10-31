@@ -1,6 +1,6 @@
 // Swiper JS
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -35,12 +35,18 @@ function ProjectSlider({ projects, loading }: ProjectSliderProps) {
       </button>
 
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         navigation={{
           prevEl: ".project-slider-prev",
           nextEl: ".project-slider-next",
         }}
         loop={shouldLoop}
+        speed={1000}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         spaceBetween={0}
         slidesPerView={1}
         breakpoints={{
