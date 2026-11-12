@@ -200,17 +200,15 @@ function Home() {
         <ProjectSlider projects={filteredProjects} loading={loading} />
       </section>
 
-      <section className="overflow-hidden py-14 md:py-16 bg-[#FFFDF9]">
+      <section className="overflow-hidden px-2 md:px-6 py-7 bg-[#FFFDF9]">
         {/* Heading */}
-        <div className="mx-auto mb-12 max-w-3xl px-4 text-center">
-          <h2 className="text-3xl font-medium text-[#444] md:text-4xl">
-            Trending Locations
-          </h2>
+        <div className=" mb-12 flex justify-between w-full">
+          <p className="text-3xl text-gold font-bold md:text-4xl">
+            Discover Prime Destinations
+          </p>
 
           <p className="mt-3 text-sm leading-6 text-gray-500 md:text-base">
-            Explore the most sought-after neighborhoods and up-and-coming areas,
-            carefully selected by our experts for their value, lifestyle, and
-            investment potential.
+            Explore the most sought-after neighborhoods.
           </p>
         </div>
 

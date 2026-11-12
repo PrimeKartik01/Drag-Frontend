@@ -156,8 +156,9 @@ function ProjectsMegaMenu() {
               ) : bestDealProjects.length > 0 ? (
                 <Swiper
                   modules={[Navigation, Pagination, Autoplay]}
+                  speed={1000}
                   autoplay={{
-                    delay: 3000,
+                    delay: 2000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                   }}
