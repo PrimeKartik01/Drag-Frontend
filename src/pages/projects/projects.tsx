@@ -6,13 +6,61 @@ import image from "@/assets/img/image.png";
 
 import { ProjectCard } from "@/features/projects/components/project-card";
 import Header from "../../components/header";
+import ProjectsFilterSidebar from "@/features/projects/components/ProjectsFilterSidebar";
 
 function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const projectsPerPage = 4;
+  const [search, setSearch] = useState("");
+  const [selectedCities, setSelectedCities] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<string[]>(
+    [],
+  );
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      const searchValue = search.toLowerCase().trim();
+
+      const matchesSearch =
+        !searchValue ||
+        project.name.toLowerCase().includes(searchValue) ||
+        (project.builder?.name?.toLowerCase().includes(searchValue) ?? false);
+
+      const matchesCity =
+        selectedCities.length === 0 ||
+        selectedCities.includes(project.city?.name ?? "");
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(project.property_category?.name ?? "");
+      const matchesPropertyType =
+        selectedPropertyTypes.length === 0 ||
+        selectedPropertyTypes.includes(project.property_type?.name ?? "");
+      const matchesStatus =
+        selectedStatuses.length === 0 ||
+        selectedStatuses.includes(project.project_status ?? "");
+
+      return (
+        matchesSearch &&
+        matchesCity &&
+        matchesCategory &&
+        matchesPropertyType &&
+        matchesStatus
+      );
+    });
+  }, [
+    projects,
+    search,
+    selectedCities,
+    selectedCategories,
+    selectedPropertyTypes,
+    selectedStatuses,
+  ]);
+
+  const projectsPerPage = 8;
 
   useEffect(() => {
     getProjects()
@@ -27,24 +75,48 @@ function Projects() {
       });
   }, []);
 
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
   const currentProjects = useMemo(() => {
     const startIndex = (currentPage - 1) * projectsPerPage;
 
-    return projects.slice(startIndex, startIndex + projectsPerPage);
-  }, [projects, currentPage]);
+    return filteredProjects.slice(startIndex, startIndex + projectsPerPage);
+  }, [filteredProjects, currentPage]);
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setCurrentPage(1);
+  };
+
+  const handleCitiesChange = (values: string[]) => {
+    setSelectedCities(values);
+    setCurrentPage(1);
+  };
+
+  const handleCategoriesChange = (values: string[]) => {
+    setSelectedCategories(values);
+    setCurrentPage(1);
+  };
+
+  const handlePropertyTypesChange = (values: string[]) => {
+    setSelectedPropertyTypes(values);
+    setCurrentPage(1);
+  };
+
+  const handleStatusesChange = (values: string[]) => {
+    setSelectedStatuses(values);
+    setCurrentPage(1);
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-[1522px]">
       <Header />
-      <section className="relative h-[220px] w-full overflow-hidden md:h-[50vh]">
+      <section className="relative h-[40vh] w-full overflow-hidden md:h-[50vh]">
         <img
           src={image}
           alt="SS Prime Properties"
@@ -85,77 +157,90 @@ function Projects() {
           </p>
         </div>
 
-      
-        {/* Loading */}
-        {loading ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 9 }).map((_, index) => (
-              <div
-                key={index}
-                className="h-80 animate-pulse rounded-xl bg-gray-200"
-              />
-            ))}
-          </div>
-        ) : currentProjects.length > 0 ? (
-          <>
-            {/* Project Grid */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {currentProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start">
+          <ProjectsFilterSidebar
+            projects={projects}
+            search={search}
+            selectedCities={selectedCities}
+            selectedCategories={selectedCategories}
+            selectedPropertyTypes={selectedPropertyTypes}
+            selectedStatuses={selectedStatuses}
+            setSearch={handleSearchChange}
+            setSelectedCities={handleCitiesChange}
+            setSelectedCategories={handleCategoriesChange}
+            setSelectedPropertyTypes={handlePropertyTypesChange}
+            setSelectedStatuses={handleStatusesChange}
+          />
+
+          {/* Loading */}
+          {loading ? (
+            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {Array.from({ length: 9 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="h-80 animate-pulse rounded-xl bg-gray-200"
+                />
               ))}
             </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
-                <button
-                  disabled={currentPage === 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Previous
-                </button>
-
-                {Array.from(
-                  { length: totalPages },
-                  (_, index) => index + 1,
-                ).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`size-10 rounded-lg border text-sm font-semibold transition ${
-                      currentPage === page
-                        ? "border-gold bg-gold text-white"
-                        : "border-gray-300 hover:bg-gray-100"
-                    }`}
-                  >
-                    {page}
-                  </button>
+          ) : currentProjects.length > 0 ? (
+            <>
+              {/* Project Grid */}
+              <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+                {currentProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
                 ))}
 
-                <button
-                  disabled={currentPage === totalPages}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Next
-                </button>
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="col-span-full flex flex-wrap items-center justify-center gap-2">
+                    <button
+                      disabled={currentPage === 1}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      className="rounded-lg border border-gray-300 px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      Previous
+                    </button>
+
+                    {Array.from(
+                      { length: totalPages },
+                      (_, index) => index + 1,
+                    ).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => handlePageChange(page)}
+                        className={`size-10 rounded-lg border text-sm font-semibold transition ${
+                          currentPage === page
+                            ? "border-gold bg-gold text-white"
+                            : "border-gray-300 hover:bg-gray-100"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    <button
+                      disabled={currentPage === totalPages}
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      className="rounded-lg border border-gray-300 px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </>
-        ) : (
-          <div className="py-20 text-center">
-            <h2 className="text-xl font-semibold">No Projects Found</h2>
-            <p className="mt-2 text-sm text-slate-500">
-              No projects are currently available.
-            </p>
-          </div>
-        )}
+            </>
+          ) : (
+            <div className="flex-1 py-20 text-center">
+              <h2 className="text-xl font-semibold">No Projects Found</h2>
+              <p className="mt-2 text-sm text-slate-500">
+                Try adjusting your search or filters.
+              </p>
+            </div>
+          )}
+        </div>
       </section>
 
-      <section>
-
-      </section>
+      <section></section>
     </main>
   );
 }

@@ -80,35 +80,35 @@ function Home() {
   const locations = [
     {
       id: 1,
-      title: "Noida-Greater Noida Expressway",
+      title: "Best Deal",
       city: "Noida",
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000",
     },
     {
       id: 2,
-      title: "Srinagar Kanyakumari Highway",
+      title: "Featured Project",
       city: "Panipat",
       image:
         "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1000",
     },
     {
       id: 3,
-      title: "Golf Course Road",
+      title: "Hot Project",
       city: "Gurugram",
       image:
         "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1000",
     },
     {
       id: 4,
-      title: "Dwarka Expressway",
+      title: "New Launch",
       city: "Gurugram",
       image:
         "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1000",
     },
     {
       id: 5,
-      title: "Yamuna Expressway",
+      title: "Recommended ",
       city: "Greater Noida",
       image:
         "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1000",
@@ -150,124 +150,126 @@ function Home() {
         />
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="px-2 md:px-6 py-7 bg-[#FFFDF9]">
-        <p className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2 px-2">
-          Properties
-          <span>
-            <svg
-              width="32"
-              height="2"
-              viewBox="0 0 32 2"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="0"
-                y1="1"
-                x2="32"
-                y2="1"
-                stroke="#C59B27"
-                strokeWidth="2"
-              />
-            </svg>
-          </span>
-        </p>
+      <div className="px-2 md:px-6 py-7 bg-[#FFFDF9]">
+        {/* Featured Projects Section */}
+        <section>
+          <p className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2">
+            Properties
+            <span>
+              <svg
+                width="32"
+                height="2"
+                viewBox="0 0 32 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="0"
+                  y1="1"
+                  x2="32"
+                  y2="1"
+                  stroke="#C59B27"
+                  strokeWidth="2"
+                />
+              </svg>
+            </span>
+          </p>
 
-        <div className="max-md:flex max-md:justify-between items-center md:flex-col">
-          <h2 className="text-[1.2rem] md:text-4xl font-bold px-2">
-            Our <span className="text-gold">Featured</span> Projects
-          </h2>
+          <div className="max-md:flex max-md:justify-between items-center md:flex-col">
+            <h2 className="text-[1.2rem] md:text-4xl font-bold">
+              Our <span className="text-gold">Featured</span> Projects
+            </h2>
 
-          <div className="flex justify-between items-center px-2">
-            <p className="mt-2 text-sm text-slate-500 hidden md:block">
-              Explore our latest residential and commercial projects.
-            </p>
+            <div className="flex justify-between items-center">
+              <p className="mt-2 text-sm text-slate-500 hidden md:block">
+                Explore our latest residential and commercial projects.
+              </p>
 
-            <Link
-              to="/projects"
-              className="text-xs md:text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-lg px-2 py-1.5 flex justify-center items-center gap-2 group transition-all duration-300 md:mt-0"
-            >
-              View All
-              <ArrowRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
+              <Link
+                to="/projects"
+                className="text-xs md:text-md text-white font-semibold bg-gold hover:bg-[#9a7229] cursor-pointer rounded-lg px-2 py-1.5 flex justify-center items-center gap-2 group transition-all duration-300 md:mt-0"
+              >
+                View All
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
           </div>
-        </div>
 
-        <ProjectSlider projects={filteredProjects} loading={loading} />
-      </section>
+          <ProjectSlider projects={filteredProjects} loading={loading} />
+        </section>
 
-      <section className="overflow-hidden px-2 md:px-6 py-7 bg-[#FFFDF9]">
-        {/* Heading */}
-        <div className=" mb-12 flex justify-between w-full">
-          <p className="text-3xl text-gold font-bold md:text-4xl">
-            Discover Prime Destinations
-          </p>
+        <section className="overflow-hidden grid grid-cols-1  gap-4 mt-8">
+          {/* Heading */}
+          <div className="flex flex-col md:flex-row md:justify-between w-full">
+            <h2 className="text-[1.2rem] md:text-4xl font-bold">
+              Discover <span className="text-gold">Curated</span> Collections
+            </h2>
 
-          <p className="mt-3 text-sm leading-6 text-gray-500 md:text-base">
-            Explore the most sought-after neighborhoods.
-          </p>
-        </div>
+            <p className="md:mt-3 text-sm leading-6 text-gray-500 ">
+              Explore the most sought-after neighborhoods
+            </p>
+          </div>
 
-        {/* Carousel */}
-        <div className="trending-locations-slider">
-          <Swiper
-            modules={[Autoplay]}
-            slidesPerView={1.15}
-            centeredSlides={true}
-            spaceBetween={20}
-            loop={shouldLoop}
-            speed={1000}
-            autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 25,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-              },
-            }}
-          >
-            {locations.map((location) => (
-              <SwiperSlide key={location.id}>
-                <div className="group relative h-[130px] cursor-pointer overflow-hidden rounded-xl md:h-[150px]">
-                  <img
-                    src={location.image}
-                    alt={location.title}
-                    className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+          {/* Carousel */}
+          <div className="trending-locations-slider">
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={1.15}
+              centeredSlides={true}
+              spaceBetween={20}
+              loop={shouldLoop}
+              speed={1000}
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 25,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+              }}
+            >
+              {locations.map((location) => (
+                <SwiperSlide key={location.id}>
+                  <div className="group relative h-[130px] cursor-pointer overflow-hidden rounded-xl md:h-[150px]">
+                    <img
+                      src={location.image}
+                      alt={location.title}
+                      className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
 
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-black/45 transition duration-300 group-hover:bg-black/55" />
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/45 transition duration-300 group-hover:bg-black/55" />
 
-                  {/* Location Content */}
-                  <div className="absolute inset-0 flex flex-col justify-center px-5 text-white md:px-6">
-                    <h3 className="text-lg font-medium md:text-xl">
-                      {location.title}
-                    </h3>
+                    {/* Location Content */}
+                    <div className="absolute inset-0 flex flex-col justify-center px-5 text-white md:px-6">
+                      <h3 className="text-lg font-medium md:text-xl">
+                        {location.title}
+                      </h3>
 
-                    <p className="mt-2 text-sm font-semibold">
-                      {location.city}
-                    </p>
+                      <p className="mt-2 text-sm font-semibold">
+                        {location.city}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
