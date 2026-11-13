@@ -72,6 +72,7 @@ export function TrendingHighlights({ projects }: TrendingHighlightsProps) {
               autoplay={{
                 delay: 0,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               pagination={{
                 clickable: true,
@@ -109,7 +110,9 @@ export function TrendingHighlights({ projects }: TrendingHighlightsProps) {
 
                       <p className="mt-2 text-sm font-semibold">
                         {highlight.projects.length}{" "}
-                        {highlight.projects.length === 1 ? "project" : "projects"}
+                        {highlight.projects.length === 1
+                          ? "project"
+                          : "projects"}
                       </p>
                     </div>
                   </Link>
