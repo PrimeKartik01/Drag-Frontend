@@ -65,11 +65,10 @@ export function TrendingHighlights({ projects }: TrendingHighlightsProps) {
           {highlights.length > 0 && (
             <Swiper
               modules={[Autoplay]}
-              slidesPerView={Math.min(1.15, highlights.length)}
               centeredSlides={false}
               spaceBetween={20}
               loop={shouldLoop}
-              speed={2000}
+              speed={4000}
               autoplay={{
                 delay: 0,
                 disableOnInteraction: false,
@@ -79,15 +78,14 @@ export function TrendingHighlights({ projects }: TrendingHighlightsProps) {
               }}
               breakpoints={{
                 640: {
-                  slidesPerView: Math.min(2, highlights.length),
+                  slidesPerView: 2,
                   spaceBetween: 25,
                 },
                 1024: {
-                  slidesPerView: Math.min(3, highlights.length),
-                  spaceBetween: 40,
+                  slidesPerView: 3,
+                  spaceBetween: 30,
                 },
               }}
-              className="[&_.swiper-wrapper]:[transition-timing-function:linear]"
             >
               {slides.map((highlight, index) => (
                 <SwiperSlide key={`${highlight.slug}-${index}`}>
