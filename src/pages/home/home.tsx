@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getProjects } from "@/api/api";
 import type { Project } from "@/types/project";
 
-import ProjectSearch from "@/features/projects/components/ProjectSearch";
+import ProjectSearch from "@/features/projects/components/project-search";
 import ProjectSlider from "@/features/projects/components/project-slider";
 import heroVideo from "@/assets/icons/video/Website-video.mp4";
 import Header from "../../components/header";

@@ -60,11 +60,11 @@ function FilterGroup({
   if (options.length === 0) return null;
 
   return (
-    <fieldset className="border-b border-slate-100 px-4 py-3">
-      <legend className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+    <fieldset className="px-4 py-3">
+      <legend className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
         {title}
       </legend>
-      <div className="space-y-2">
+      <div className="space-y-1">
         {options.map(({ value, count }) => (
           <label
             key={value}
@@ -163,7 +163,7 @@ function ProjectsFilterSidebar({
           Filters
         </div>
 
-        <div className="border-b border-slate-100 px-4 py-3">
+        <div className="border-slate-100 px-4 py-3">
           <label
             htmlFor="project-filter-search"
             className="mb-2 block text-[10px] font-semibold uppercase tracking-wide text-slate-500"

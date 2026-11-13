@@ -6,7 +6,7 @@ import image from "@/assets/img/image.png";
 
 import { ProjectCard } from "@/features/projects/components/project-card";
 import Header from "../../components/header";
-import ProjectsFilterSidebar from "@/features/projects/components/ProjectsFilterSidebar";
+import ProjectsFilterSidebar from "@/features/projects/components/projects-filter-sidebar";
 
 function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);

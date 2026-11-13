@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import mobilelogo from "@/assets/img/mobilelogo.svg";
-import ProjectsMegaMenu from "./ProjectsMegaMenu";
+import ProjectsMegaMenu from "./projects-mega-menu";
 import { Button } from "../../@/components/ui/button";
 import {
   Sheet,
