@@ -6,14 +6,15 @@ import type { Project } from "@/types/project";
 import ProjectSearch from "@/features/projects/components/project-search";
 import ProjectSlider from "@/features/projects/components/project-slider";
 import heroVideo from "@/assets/icons/video/Website-video.mp4";
-import Header from "../../components/header";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+
+import Header from "../../components/header";
+import { TrendingHighlights } from "../../components/trending-highlights";
+
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -76,46 +77,6 @@ function Home() {
       );
     });
   }, [projects, search, city, state, propertyCategory, propertyType, bhk]);
-
-  const locations = [
-    {
-      id: 1,
-      title: "Best Deal",
-      city: "Noida",
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000",
-    },
-    {
-      id: 2,
-      title: "Featured Project",
-      city: "Panipat",
-      image:
-        "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1000",
-    },
-    {
-      id: 3,
-      title: "Hot Project",
-      city: "Gurugram",
-      image:
-        "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1000",
-    },
-    {
-      id: 4,
-      title: "New Launch",
-      city: "Gurugram",
-      image:
-        "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1000",
-    },
-    {
-      id: 5,
-      title: "Recommended ",
-      city: "Greater Noida",
-      image:
-        "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1000",
-    },
-  ];
-
-  const shouldLoop = loading || projects.length >= 4;
 
   return (
     <main className="mx-auto w-full max-w-[1522px]">
@@ -201,74 +162,7 @@ function Home() {
           <ProjectSlider projects={filteredProjects} loading={loading} />
         </section>
 
-        <section className="overflow-hidden grid grid-cols-1  gap-4 mt-8">
-          {/* Heading */}
-          <div className="flex flex-col md:flex-row md:justify-between w-full">
-            <h2 className="text-[1.2rem] md:text-4xl font-bold">
-              Discover <span className="text-gold">Curated</span> Collections
-            </h2>
-
-            <p className="md:mt-3 text-sm leading-6 text-gray-500 ">
-              Explore the most sought-after neighborhoods
-            </p>
-          </div>
-
-          {/* Carousel */}
-          <div className="trending-locations-slider">
-            <Swiper
-              modules={[Autoplay]}
-              slidesPerView={1.15}
-              centeredSlides={true}
-              spaceBetween={20}
-              loop={shouldLoop}
-              speed={1000}
-              autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 25,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 40,
-                },
-              }}
-            >
-              {locations.map((location) => (
-                <SwiperSlide key={location.id}>
-                  <div className="group relative h-[130px] cursor-pointer overflow-hidden rounded-xl md:h-[150px]">
-                    <img
-                      src={location.image}
-                      alt={location.title}
-                      className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-
-                    {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-black/45 transition duration-300 group-hover:bg-black/55" />
-
-                    {/* Location Content */}
-                    <div className="absolute inset-0 flex flex-col justify-center px-5 text-white md:px-6">
-                      <h3 className="text-lg font-medium md:text-xl">
-                        {location.title}
-                      </h3>
-
-                      <p className="mt-2 text-sm font-semibold">
-                        {location.city}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </section>
+        <TrendingHighlights projects={projects} />
       </div>
     </main>
   );

@@ -35,13 +35,13 @@ function Header() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 mx-auto w-full left-1/2 -translate-x-1/2 px-3 pt-4 md:px-6 max-w-[1522px] transition-all duration-300 ${
+      className={`fixed left-0 top-0 z-50 mx-auto w-full left-1/2 -translate-x-1/2 px-3 pt-2 md:px-6 max-w-[1522px] transition-all duration-300 ${
         scrolled
           ? "bg-gray-800/90 shadow-lg backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className=" flex h-20 w-full items-center justify-between rounded-3xl">
+      <div className="flex h-20 w-full items-center justify-between rounded-3xl">
         {/* Logo */}
         <a href="/" className="inline-flex items-center max-md:h-12 w-26">
           <img

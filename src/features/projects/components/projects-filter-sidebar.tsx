@@ -10,15 +10,18 @@ interface ProjectsFilterSidebarProps {
   selectedCategories: string[];
   selectedPropertyTypes: string[];
   selectedStatuses: string[];
+  selectedHighlights: string[];
   setSearch: (value: string) => void;
   setSelectedCities: (values: string[]) => void;
   setSelectedCategories: (values: string[]) => void;
   setSelectedPropertyTypes: (values: string[]) => void;
   setSelectedStatuses: (values: string[]) => void;
+  setSelectedHighlights: (values: string[]) => void;
 }
 
 interface FilterOption {
   value: string;
+  label?: string;
   count: number;
 }
 
@@ -43,6 +46,30 @@ function getOptions(
   return [...counts].map(([value, count]) => ({ value, count }));
 }
 
+function getHighlightOptions(projects: Project[]): FilterOption[] {
+  const counts = new Map<string, FilterOption>();
+
+  projects.forEach((project) => {
+    const projectHighlights = new Map<string, string>();
+    project.highlights?.forEach(({ name, slug }) => {
+      const value = slug.trim();
+      const label = name.trim();
+      if (value && label) projectHighlights.set(value, label);
+    });
+
+    projectHighlights.forEach((label, value) => {
+      const option = counts.get(value);
+      counts.set(value, {
+        value,
+        label,
+        count: (option?.count ?? 0) + 1,
+      });
+    });
+  });
+
+  return [...counts.values()];
+}
+
 function FilterGroup({
   title,
   options,
@@ -65,7 +92,7 @@ function FilterGroup({
         {title}
       </legend>
       <div className="space-y-1">
-        {options.map(({ value, count }) => (
+        {options.map(({ value, label, count }) => (
           <label
             key={value}
             className="flex cursor-pointer items-center gap-2 text-xs text-slate-700"
@@ -76,7 +103,7 @@ function FilterGroup({
               onChange={() => toggleOption(value)}
               className="size-3.5 rounded border-slate-300 accent-amber-600"
             />
-            <span className="min-w-0 flex-1">{value}</span>
+            <span className="min-w-0 flex-1">{label ?? value}</span>
             <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-500">
               {count}
             </span>
@@ -94,11 +121,13 @@ function ProjectsFilterSidebar({
   selectedCategories,
   selectedPropertyTypes,
   selectedStatuses,
+  selectedHighlights,
   setSearch,
   setSelectedCities,
   setSelectedCategories,
   setSelectedPropertyTypes,
   setSelectedStatuses,
+  setSelectedHighlights,
 }: ProjectsFilterSidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -118,12 +147,14 @@ function ProjectsFilterSidebar({
     () => getOptions(projects, (project) => project.project_status),
     [projects],
   );
+  const highlights = useMemo(() => getHighlightOptions(projects), [projects]);
 
   const activeFilterCount =
     selectedCities.length +
     selectedCategories.length +
     selectedPropertyTypes.length +
-    selectedStatuses.length;
+    selectedStatuses.length +
+    selectedHighlights.length;
 
   const clearFilters = () => {
     setSearch("");
@@ -131,6 +162,7 @@ function ProjectsFilterSidebar({
     setSelectedCategories([]);
     setSelectedPropertyTypes([]);
     setSelectedStatuses([]);
+    setSelectedHighlights([]);
   };
 
   return (
@@ -206,6 +238,12 @@ function ProjectsFilterSidebar({
           options={statuses}
           selected={selectedStatuses}
           onChange={setSelectedStatuses}
+        />
+        <FilterGroup
+          title="Highlights"
+          options={highlights}
+          selected={selectedHighlights}
+          onChange={setSelectedHighlights}
         />
 
         {(search || activeFilterCount > 0) && (

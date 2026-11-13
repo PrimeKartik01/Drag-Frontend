@@ -7,8 +7,10 @@ import image from "@/assets/img/image.png";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import Header from "../../components/header";
 import ProjectsFilterSidebar from "@/features/projects/components/projects-filter-sidebar";
+import { useSearchParams } from "react-router-dom";
 
 function Projects() {
+  const [searchParams] = useSearchParams();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +22,10 @@ function Projects() {
     [],
   );
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const [selectedHighlights, setSelectedHighlights] = useState<string[]>(() => {
+    const highlight = searchParams.get("highlight");
+    return highlight ? [highlight] : [];
+  });
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -42,13 +48,20 @@ function Projects() {
       const matchesStatus =
         selectedStatuses.length === 0 ||
         selectedStatuses.includes(project.project_status ?? "");
+      const matchesHighlights =
+        selectedHighlights.length === 0 ||
+        (project.highlights?.some((highlight) =>
+          selectedHighlights.includes(highlight.slug),
+        ) ??
+          false);
 
       return (
         matchesSearch &&
         matchesCity &&
         matchesCategory &&
         matchesPropertyType &&
-        matchesStatus
+        matchesStatus &&
+        matchesHighlights
       );
     });
   }, [
@@ -58,9 +71,10 @@ function Projects() {
     selectedCategories,
     selectedPropertyTypes,
     selectedStatuses,
+    selectedHighlights,
   ]);
 
-  const projectsPerPage = 8;
+  const projectsPerPage = 2;
 
   useEffect(() => {
     getProjects()
@@ -76,6 +90,14 @@ function Projects() {
   }, []);
 
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const firstVisiblePage = Math.max(
+    1,
+    Math.min(currentPage, totalPages - 1),
+  );
+  const visiblePages = Array.from(
+    { length: Math.min(totalPages, 2) },
+    (_, index) => firstVisiblePage + index,
+  );
 
   const currentProjects = useMemo(() => {
     const startIndex = (currentPage - 1) * projectsPerPage;
@@ -108,9 +130,13 @@ function Projects() {
     setCurrentPage(1);
   };
 
+  const handleHighlightsChange = (values: string[]) => {
+    setSelectedHighlights(values);
+    setCurrentPage(1);
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -165,11 +191,13 @@ function Projects() {
             selectedCategories={selectedCategories}
             selectedPropertyTypes={selectedPropertyTypes}
             selectedStatuses={selectedStatuses}
+            selectedHighlights={selectedHighlights}
             setSearch={handleSearchChange}
             setSelectedCities={handleCitiesChange}
             setSelectedCategories={handleCategoriesChange}
             setSelectedPropertyTypes={handlePropertyTypesChange}
             setSelectedStatuses={handleStatusesChange}
+            setSelectedHighlights={handleHighlightsChange}
           />
 
           {/* Loading */}
@@ -186,13 +214,12 @@ function Projects() {
             <>
               {/* Project Grid */}
               <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-                {currentProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="col-span-full flex flex-wrap items-center justify-center gap-2">
+                  <div className="col-span-full flex flex-wrap items-center justify-end
+                  
+                  gap-2">
                     <button
                       disabled={currentPage === 1}
                       onClick={() => handlePageChange(currentPage - 1)}
@@ -201,10 +228,7 @@ function Projects() {
                       Previous
                     </button>
 
-                    {Array.from(
-                      { length: totalPages },
-                      (_, index) => index + 1,
-                    ).map((page) => (
+                    {visiblePages.map((page) => (
                       <button
                         key={page}
                         onClick={() => handlePageChange(page)}
@@ -227,6 +251,10 @@ function Projects() {
                     </button>
                   </div>
                 )}
+
+                {currentProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
               </div>
             </>
           ) : (
