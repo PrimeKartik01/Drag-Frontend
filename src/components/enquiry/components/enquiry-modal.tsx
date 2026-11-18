@@ -201,9 +201,7 @@ export default function EnquiryModal({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open, loading, handleClose]);
 
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const nextValue =
       name === "mobile" ? value.replace(/\D/g, "").slice(0, 10) : value;
@@ -271,7 +269,7 @@ export default function EnquiryModal({
   if (!open) return null;
 
   const inputClassName =
-    "w-full rounded-xl border border-gray-900 bg-white px-4 py-3 text-base text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#232833] focus:ring-2 focus:ring-[#232833]/15";
+    "w-full rounded-xl border border-gray-900 bg-white px-4 py-2 text-base text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-[#232833] focus:ring-2 focus:ring-[#232833]/15";
   const labelClassName = "mb-2 block text-sm font-semibold text-gray-900";
 
   return createPortal(
@@ -333,7 +331,7 @@ export default function EnquiryModal({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-2 p-4">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="grid  gap-3 grid-cols-2">
               <div>
                 <label htmlFor="enquiry-name" className={labelClassName}>
                   Full Name *
@@ -352,17 +350,17 @@ export default function EnquiryModal({
               </div>
 
               <div>
-                <label htmlFor="enquiry-email" className={labelClassName}>
-                  Email Address *
+                <label htmlFor="enquiry-city" className={labelClassName}>
+                  City *
                 </label>
                 <input
-                  id="enquiry-email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  id="enquiry-city"
+                  type="text"
+                  name="city"
+                  value={formData.city}
                   onChange={handleChange}
-                  placeholder="Enter your email"
-                  autoComplete="email"
+                  placeholder="Enter your city"
+                  autoComplete="address-level2"
                   required
                   className={inputClassName}
                 />
@@ -393,6 +391,7 @@ export default function EnquiryModal({
                 </label>
                 <DropdownField
                   id="enquiry-project"
+                  className="py-2"
                   label="Interested project"
                   value={formData.project}
                   placeholder="Select your project"
@@ -410,17 +409,17 @@ export default function EnquiryModal({
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="enquiry-city" className={labelClassName}>
-                  City *
+                <label htmlFor="enquiry-email" className={labelClassName}>
+                  Email Address *
                 </label>
                 <input
-                  id="enquiry-city"
-                  type="text"
-                  name="city"
-                  value={formData.city}
+                  id="enquiry-email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your city"
-                  autoComplete="address-level2"
+                  placeholder="Enter your email"
+                  autoComplete="email"
                   required
                   className={inputClassName}
                 />
@@ -432,6 +431,7 @@ export default function EnquiryModal({
                 </label>
                 <DropdownField
                   id="enquiry-budget"
+                  className="py-2"
                   label="Budget"
                   value={formData.budget}
                   placeholder="Select your budget"
