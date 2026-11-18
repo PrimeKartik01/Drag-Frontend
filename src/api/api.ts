@@ -1,32 +1,16 @@
-import type { Project } from "@/types/project";
+import api from "./axios";
 
-const API_BASE_URL = "https://ssprimecrm.com/api/v1";
+import type { Project, ProjectsResponse } from "@/types/project";
 
-export const getProjects = async () => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/projects`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error("Failed to fetch projects:", error);
-    throw error;
-  }
+export const getProjects = async (): Promise<ProjectsResponse> => {
+  const response = await api.get<ProjectsResponse>("/projects");
+  return response.data;
 };
 
 export const getProject = async (slug: string): Promise<Project> => {
-  const response = await fetch(`${API_BASE_URL}/projects/${slug}`);
+  const response = await api.get<{ data: Project }>(
+    `/projects/${slug}`
+  );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch project");
-  }
-
-  const result = await response.json();
-
-  return result.data;
+  return response.data.data;
 };

@@ -14,6 +14,7 @@ import { Spinner } from "../../../../@/index";
 
 // Price Fomatter
 import { formatPrice } from "@/utils/formatPrice";
+import EnquiryModal from "../../../components/enquiry/components/enquiry-modal";
 
 interface ProjectCardProps {
   project: Project;
@@ -21,6 +22,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [imageLoading, setImageLoading] = useState(true);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
 
   const fallbackImage =
     "https://images.unsplash.com/photo-1788204997156-72d623841c2b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -42,9 +44,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="object-cover h-full w-full rounded-xl"
           />
 
-          <p className="absolute top-2 right-2 text-black text-white rounded-lg px-3 py-1 text-sm font-medium bg-gold ">
-            {project.property_category?.name}
-          </p>
+          <div className="flex justify-between w-full absolute top-3 px-3">
+            <p className=" text-black text-white rounded-lg px-3 py-1 text-sm font-medium bg-gold ">
+              {project.property_category?.name}
+            </p>
+            <button
+              type="button"
+              onClick={() => setEnquiryOpen(true)}
+              className="bg-gold text-white px-3 py-1 rounded-lg text-sm font-medium hover:bg-gold-100"
+            >
+              Enquire
+            </button>
+          </div>
         </div>
 
         <div className="px-3 md:px-4 pt-4">
@@ -69,21 +80,33 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="flex items-center justify-self-start mt-2 gap-1 w-max ">
-            <IndianRupee className="size-4 w-max text-gold-100" strokeWidth={3} />
-            <p className="text-sm text-gold-100 font-bold">
-              {formatPrice(project.min_price)}
-            </p>
-          </div>
+          <div className="flex items-center justify-between w-full gap-5">
+            <div className="flex items-center justify-self-start mt-2 gap-1 w-max ">
+              <IndianRupee
+                className="size-4 w-max text-gold-100"
+                strokeWidth={3}
+              />
+              <p className="text-sm text-gold-100 font-bold">
+                {formatPrice(project.min_price)}
+              </p>
+            </div>
 
-          <Link
-            to={`/projects/${project.slug}`}
-            className="mt-2 px-4 py-2 font-medium uppercase flex items-center justify-center gap-1 rounded-lg  w-max text-xs text-white tracking-wider bg-gold hover:bg-gold-100"
-          >
-            View Details
-          </Link>
+            <Link
+              to={`/projects/${project.slug}`}
+              className="mt-2 px-4 py-2 font-medium uppercase flex items-center justify-center gap-1 rounded-lg  w-max text-xs text-white tracking-wider bg-gold hover:bg-gold-100"
+            >
+              View Details
+            </Link>
+          </div>
         </div>
       </div>
+      <EnquiryModal
+        open={enquiryOpen}
+        onClose={() => setEnquiryOpen(false)}
+        projectId={project.id}
+        projectName={project.name}
+        projectMinPrice={project.min_price}
+      />
     </div>
   );
 }

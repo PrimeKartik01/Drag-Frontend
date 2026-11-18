@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import mobilelogo from "@/assets/img/mobilelogo.svg";
 import ProjectsMegaMenu from "./projects-mega-menu";
+import EnquiryModal from "./enquiry/components/enquiry-modal";
 import { Button } from "../../@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +13,8 @@ import {
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,13 +71,16 @@ function Header() {
           )}
         </nav>
 
-        <Button className="rounded-xl bg-gold text-white hover:bg-gold-100 hidden md:block">
+        <Button
+          onClick={() => setEnquiryOpen(true)}
+          className="rounded-xl bg-gold text-white hover:bg-gold-100 hidden md:block"
+        >
           Enquire Now
         </Button>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger
               render={
                 <Button
@@ -113,7 +119,13 @@ function Header() {
                   </a>
                 ))}
 
-                <Button className="w-full rounded-xl bg-gold text-white hover:bg-gold-100">
+                <Button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setEnquiryOpen(true);
+                  }}
+                  className="w-full rounded-xl bg-gold text-white hover:bg-gold-100"
+                >
                   Enquire Now
                 </Button>
               </nav>
@@ -121,6 +133,10 @@ function Header() {
           </Sheet>
         </div>
       </div>
+      <EnquiryModal
+        open={enquiryOpen}
+        onClose={() => setEnquiryOpen(false)}
+      />
     </header>
   );
 }
