@@ -184,7 +184,8 @@ export default function EnquiryModal({
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow =
+        previousOverflow === "hidden" ? "" : previousOverflow;
     };
   }, [open]);
 
@@ -391,7 +392,7 @@ export default function EnquiryModal({
                 </label>
                 <DropdownField
                   id="enquiry-project"
-                  className="py-2"
+                  className="py-2 text-xs"
                   label="Interested project"
                   value={formData.project}
                   placeholder="Select your project"
