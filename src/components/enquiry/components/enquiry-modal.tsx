@@ -305,15 +305,17 @@ export default function EnquiryModal({
               alt="SS Prime Infra"
               className="h-18 object-cover drop-shadow-lg"
             />
-            <p className="md:text-2xl font-medium mt-3 text-white">
-              # Build Trust Yes We Do
-            </p>
+            <div>
+              <p className="text-xl md:text-2xl font-medium mt-3 text-white">
+                # Build Trust Yes We Do
+              </p>
+              <p className="text-xs leading-6 text-gray-400 hidden md:block ">
+                {success
+                  ? "Your enquiry has been submitted successfully. Our team will contact you shortly."
+                  : "Share your details and our team will get in touch with you."}
+              </p>
+            </div>
           </div>
-          {/* <p className="mt-2 text-sm leading-6 text-gray-400 sm:text-base">
-            {success
-              ? "Your enquiry has been submitted successfully. Our team will contact you shortly."
-              : "Share your details and our team will get in touch with you."}
-          </p> */}
         </div>
 
         {success ? (
@@ -335,7 +337,7 @@ export default function EnquiryModal({
             <div className="grid  gap-3 grid-cols-2">
               <div>
                 <label htmlFor="enquiry-name" className={labelClassName}>
-                  Full Name *
+                  Name
                 </label>
                 <input
                   id="enquiry-name"
@@ -343,16 +345,16 @@ export default function EnquiryModal({
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Enter your name"
+                  placeholder="Enter name"
                   autoComplete="name"
                   required
-                  className={inputClassName}
+                  className={`text-xs ${inputClassName}`}
                 />
               </div>
 
               <div>
                 <label htmlFor="enquiry-city" className={labelClassName}>
-                  City *
+                  City
                 </label>
                 <input
                   id="enquiry-city"
@@ -360,16 +362,16 @@ export default function EnquiryModal({
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  placeholder="Enter your city"
+                  placeholder="Enter city"
                   autoComplete="address-level2"
                   required
-                  className={inputClassName}
+                  className={`text-xs ${inputClassName}`}
                 />
               </div>
 
               <div>
                 <label htmlFor="enquiry-mobile" className={labelClassName}>
-                  Mobile Number *
+                  Number
                 </label>
                 <input
                   id="enquiry-mobile"
@@ -377,25 +379,25 @@ export default function EnquiryModal({
                   name="mobile"
                   value={formData.mobile}
                   onChange={handleChange}
-                  placeholder="Enter your mobile number"
+                  placeholder="Enter mobile number"
                   pattern="[6-9][0-9]{9}"
                   maxLength={10}
                   autoComplete="tel"
                   required
-                  className={inputClassName}
+                  className={`text-xs ${inputClassName}`}
                 />
               </div>
 
               <div>
                 <label htmlFor="enquiry-project" className={labelClassName}>
-                  Interested Project *
+                  Project 
                 </label>
                 <DropdownField
                   id="enquiry-project"
                   className="py-2 text-xs"
                   label="Interested project"
                   value={formData.project}
-                  placeholder="Select your project"
+                  placeholder="Select project"
                   options={[
                     ...new Set([
                       ...(projectName ? [projectName] : []),
@@ -408,10 +410,10 @@ export default function EnquiryModal({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <div>
                 <label htmlFor="enquiry-email" className={labelClassName}>
-                  Email Address *
+                  Email
                 </label>
                 <input
                   id="enquiry-email"
@@ -419,23 +421,23 @@ export default function EnquiryModal({
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email"
+                  placeholder="Enter email"
                   autoComplete="email"
                   required
-                  className={inputClassName}
+                  className={`text-xs ${inputClassName}`}
                 />
               </div>
 
               <div>
                 <label htmlFor="enquiry-budget" className={labelClassName}>
-                  Budget *
+                  Budget
                 </label>
                 <DropdownField
                   id="enquiry-budget"
-                  className="py-2"
+                  className="py-2 text-xs"
                   label="Budget"
                   value={formData.budget}
-                  placeholder="Select your budget"
+                  placeholder="Select budget"
                   options={[
                     "Below 50 Lakh",
                     "50-70 Lakh",
@@ -463,7 +465,7 @@ export default function EnquiryModal({
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#232833] px-5 py-3.5 font-semibold text-white shadow-md transition hover:bg-[#343a46] disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full mt-2 rounded-xl bg-[#232833] px-5 py-3.5 font-semibold text-white shadow-md transition hover:bg-[#343a46] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? "Submitting..." : "Enquire Now"}
             </button>
