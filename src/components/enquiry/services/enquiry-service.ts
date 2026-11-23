@@ -8,10 +8,6 @@ import type {
 export const submitEnquiry = async (
   data: EnquiryFormData,
 ): Promise<EnquiryResponse> => {
-  const response = await api.post<EnquiryResponse>(
-    "https://ssprimecrm.com/api/v1/enquiries",
-    data,
-  );
-
+  const response = await api.post<EnquiryResponse>("/enquiries", data);
   return response.data;
 };
