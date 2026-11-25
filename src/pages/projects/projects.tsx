@@ -77,7 +77,7 @@ function Projects() {
     selectedHighlights,
   ]);
 
-  const projectsPerPage = 2;
+  const projectsPerPage = 3;
 
   useEffect(() => {
     getProjects()
@@ -216,7 +216,7 @@ function Projects() {
           ) : currentProjects.length > 0 ? (
             <>
               {/* Project Grid */}
-              <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
 
                 {/* Pagination */}
                 {totalPages > 1 && (

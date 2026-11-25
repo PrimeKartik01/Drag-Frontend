@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 // Lazy loaded pages
 const Home = lazy(() => import("@/pages/home/home"));
 const Projects = lazy(() => import("./pages/projects/projects"));
+const Contact = lazy(() => import("./pages/contact/contact"));
 
 // Lazy loaded component
 const ProjectDetails = lazy(() =>
@@ -26,6 +27,7 @@ function App() {
       <>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>

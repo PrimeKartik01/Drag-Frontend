@@ -16,6 +16,7 @@ import Header from "../../components/header";
 import { TrendingHighlights } from "../../components/trending-highlights";
 import { AboutUs } from "../../components/about-us";
 import { WhyChooseUs } from "../../components/why-choose-us";
+import ContactEnquiryForm from "../../components/contact-enquiry-form";
 
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -113,7 +114,7 @@ function Home() {
         />
       </section>
 
-      <div className="px-2 md:px-6 py-7 bg-[#FFFDF9]">
+      <div className=" py-7 bg-[#FFFDF9]">
         {/* Featured Projects Section */}
         <section>
           <p className="text-xs md:text-sm font-semibold uppercase tracking-widest text-gold flex items-center gap-2">
@@ -167,6 +168,7 @@ function Home() {
         <AboutUs />
         <TrendingHighlights projects={projects} />
         <WhyChooseUs />
+        <ContactEnquiryForm />
       </div>
     </main>
   );

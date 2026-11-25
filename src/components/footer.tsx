@@ -23,7 +23,7 @@ const quickLinks = [
   { label: "Home", to: "/" },
   { label: "Projects", to: "/projects" },
   { label: "About Us", to: "/#about" },
-  { label: "Contact", to: "/#contact" },
+  { label: "Contact", to: "/contact" },
 ];
 
 function getProjectCategories(projects: Project[]): PropertyCategory[] {
@@ -78,7 +78,7 @@ export default function Footer() {
               Gurgaon RERA: RC/HARERA/GGM/3022/2617/2024/735
             </p>
             <p className="mt-3 leading-7">
-              Helping you find premium residential properties across Pune.
+              Helping you find premium residential properties across Pune & Gurgaon.
               Discover luxury apartments, investment opportunities and dream
               homes from India&apos;s leading developers.
             </p>
@@ -191,19 +191,19 @@ export default function Footer() {
                     Maharashtra Office
                   </span>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=City+Vista%2C+Kharadi%2C+Pune+411014"
+                    href="https://www.google.com/maps/search/?api=1&query=SS+Prime+Infra+Pune"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition hover:text-amber-500"
                   >
-                    Office No. 6, 6th Floor (B Wing), City Vista, Kharadi –
-                    Fountain Road, Ashoka Nagar, Pune – 411014
+                    Office No. 410, ICON Towers, Survey Number 83/1, Near Kasturi
+                    Chowk, Wakad, Pune, Maharashtra 411057
                   </a>
                 </div>
               </div>
 
               <a
-                href="tel:+919898981498"
+                href="tel:+919236079765"
                 className="flex items-center gap-3 transition hover:text-amber-500"
               >
                 <Phone
@@ -211,7 +211,7 @@ export default function Footer() {
                   className="shrink-0 text-[#B68D37]"
                   aria-hidden="true"
                 />
-                +91-9898981498
+                +91 92360 79765
               </a>
 
               <a
