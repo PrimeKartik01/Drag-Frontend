@@ -85,8 +85,22 @@ export interface ProjectsResponse {
 }
 
 export interface ProjectMedia {
-  photos: [];
-  videos: [];
-  floor_plans: [];
-  amenities: [];
+  photos: ProjectMediaItem[];
+  videos: ProjectMediaItem[];
+  floor_plans: ProjectMediaItem[];
+  amenities: ProjectMediaItem[];
+}
+
+export interface ProjectMediaItem {
+  id: number;
+  project_id: number;
+  type: string;
+  title: string | null;
+  file: string | null;
+  file_url: string | null;
+  thumbnail: string | null;
+  thumbnail_url: string | null;
+  sort_order: number;
+  created_at?: string;
+  updated_at?: string;
 }

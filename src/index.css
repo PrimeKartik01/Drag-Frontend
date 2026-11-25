@@ -16,3 +16,36 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes why-choose-wave-motion {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.why-choose-wave {
+  animation: why-choose-wave-motion 6s linear infinite;
+}
+
+.project-media-carousel .swiper-pagination {
+  bottom: 12px !important;
+}
+
+.project-media-carousel .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.65;
+}
+
+.project-media-carousel .swiper-pagination-bullet-active {
+  background: #d4ac55;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-choose-wave {
+    animation: none;
+  }
+}

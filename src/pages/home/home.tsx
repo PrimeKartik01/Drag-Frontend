@@ -14,6 +14,8 @@ import "swiper/css/pagination";
 
 import Header from "../../components/header";
 import { TrendingHighlights } from "../../components/trending-highlights";
+import { AboutUs } from "../../components/about-us";
+import { WhyChooseUs } from "../../components/why-choose-us";
 
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -162,7 +164,9 @@ function Home() {
           <ProjectSlider projects={filteredProjects} loading={loading} />
         </section>
 
+        <AboutUs />
         <TrendingHighlights projects={projects} />
+        <WhyChooseUs />
       </div>
     </main>
   );

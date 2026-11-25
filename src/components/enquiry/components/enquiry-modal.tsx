@@ -6,7 +6,7 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
-
+import axios from "axios";
 import { getProjects } from "@/api/api";
 import type { Project } from "@/types/project";
 import { ChevronDown } from "@/assets/icons/icons";
@@ -140,6 +140,10 @@ export default function EnquiryModal({
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({
+    email: "",
+    mobile: "",
+  });
   const [success, setSuccess] = useState(false);
 
   const handleClose = useCallback(() => {
@@ -151,6 +155,7 @@ export default function EnquiryModal({
       budget: getBudgetForPrice(projectMinPrice),
     });
     setError("");
+    setFieldErrors({ email: "", mobile: "" });
     setSuccess(false);
     onClose();
   }, [loading, onClose, projectName, projectMinPrice]);
@@ -211,6 +216,11 @@ export default function EnquiryModal({
       ...previous,
       [name]: nextValue,
     }));
+
+    setFieldErrors((previous) => ({
+      ...previous,
+      [name]: "",
+    }));
   };
 
   const handleProjectChange = (value: string) => {
@@ -234,6 +244,8 @@ export default function EnquiryModal({
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setFieldErrors({ email: "", mobile: "" });
+    setError("");
 
     if (!formData.project) {
       setError("Please select a project.");
@@ -246,7 +258,6 @@ export default function EnquiryModal({
 
     try {
       setLoading(true);
-      setError("");
 
       const response = await submitEnquiry(formData);
       if (!response.success) {
@@ -260,8 +271,19 @@ export default function EnquiryModal({
       setSuccess(true);
       onSuccess?.();
     } catch (submitError) {
-      console.error("Enquiry submission failed:", submitError);
-      setError("Unable to submit your enquiry. Please try again.");
+      if (
+        axios.isAxiosError(submitError) &&
+        submitError.response?.status === 422
+      ) {
+        const errors = submitError.response.data.errors || {};
+
+        setFieldErrors({
+          email: errors.email?.[0] || "",
+          mobile: errors.mobile?.[0] || "",
+        });
+      } else {
+        setError("Unable to submit your enquiry. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -386,11 +408,16 @@ export default function EnquiryModal({
                   required
                   className={`text-xs ${inputClassName}`}
                 />
+                {fieldErrors.mobile && (
+                  <p className="mt-1 text-xs text-red-500" role="alert">
+                    {fieldErrors.mobile}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="enquiry-project" className={labelClassName}>
-                  Project 
+                  Project
                 </label>
                 <DropdownField
                   id="enquiry-project"
@@ -426,6 +453,11 @@ export default function EnquiryModal({
                   required
                   className={`text-xs ${inputClassName}`}
                 />
+                {fieldErrors.email && (
+                  <p className="mt-1 text-xs text-red-500" role="alert">
+                    {fieldErrors.email}
+                  </p>
+                )}
               </div>
 
               <div>

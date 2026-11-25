@@ -17,7 +17,10 @@ function Projects() {
 
   const [search, setSearch] = useState("");
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
+    const category = searchParams.get("category");
+    return category ? [category] : [];
+  });
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<string[]>(
     [],
   );

@@ -1,6 +1,7 @@
 
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import Footer from "./components/footer";
 
 // Lazy loaded pages
 const Home = lazy(() => import("@/pages/home/home"));
@@ -22,11 +23,14 @@ function App() {
         </div>
       }
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects/:slug" element={<ProjectDetails />} />
-        <Route path="/projects" element={<Projects />} />
-      </Routes>
+      <>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:slug" element={<ProjectDetails />} />
+          <Route path="/projects" element={<Projects />} />
+        </Routes>
+        <Footer />
+      </>
     </Suspense>
   );
 }
